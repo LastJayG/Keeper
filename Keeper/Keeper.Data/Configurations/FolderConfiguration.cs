@@ -10,5 +10,16 @@ public class FolderConfiguration : IEntityTypeConfiguration<FolderEntity>
     {
         builder.HasKey(f => f.Id);
 
+        builder
+            .Property(cs => cs.CreatedAt)
+            .HasDefaultValueSql("NOW()");
+
+        builder
+           .Property(cs => cs.UpdatedAt)
+           .HasDefaultValueSql("NOW()");
+
+        builder
+            .HasMany(f => f.CodeSnippets)
+            .WithOne(cs => cs.Folder);
     }
 }

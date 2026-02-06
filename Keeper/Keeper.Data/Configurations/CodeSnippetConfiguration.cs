@@ -17,5 +17,9 @@ public class CodeSnippetConfiguration : IEntityTypeConfiguration<CodeSnippetEnti
         builder
            .Property(cs => cs.UpdatedAt)
            .HasDefaultValueSql("NOW()");
+
+        builder
+           .HasOne(cs => cs.Folder)
+           .WithMany(f => f.CodeSnippets);
     }
 }

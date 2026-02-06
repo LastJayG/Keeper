@@ -1,5 +1,4 @@
 ﻿using Keeper.Core.Entities;
-using Keeper.Core.Interfaces;
 using Keeper.Data.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

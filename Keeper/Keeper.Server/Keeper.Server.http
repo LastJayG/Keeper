@@ -1,6 +1,0 @@
-@Keeper.Server_HostAddress = http://localhost:5274
-
-GET {{Keeper.Server_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

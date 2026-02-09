@@ -16,7 +16,7 @@ public class CodeSnippetWithPLSpec : BaseSpecification<CodeSnippetEntity>
 
     public CodeSnippetWithPLSpec(ProgrammingLanguage programmingLanguage, int pageNumber, int pageSize) : this(programmingLanguage)
     {
-        int skip = (pageSize - 1) * pageSize;
+        int skip = (pageNumber - 1) * pageSize;
         ApplyPaging(skip, pageSize);
     }
 }

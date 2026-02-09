@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Keeper.Data.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Keeper.Data.Specifications;
 
-public class SpecificationEvaluator<T> where T : class
+public class SpecificationEvaluator<T> : ISpecificationEvaluator<T> where T : class
 {
     public IQueryable<T> GetQuery(IQueryable<T> inputQuery, BaseSpecification<T> spec)
     {

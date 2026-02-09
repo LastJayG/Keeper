@@ -19,8 +19,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keeper.Core", "Keeper.Core\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keeper.Data", "Keeper.Data\Keeper.Data.csproj", "{CC80A1CF-C357-42EE-A240-8A31CF3563A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keeper.Interfaces", "Keeper.Interfaces\Keeper.Interfaces.csproj", "{39F14AF6-27EE-4128-89F4-8DEBA90FBBB1}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,10 +49,6 @@ Global
 		{CC80A1CF-C357-42EE-A240-8A31CF3563A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC80A1CF-C357-42EE-A240-8A31CF3563A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC80A1CF-C357-42EE-A240-8A31CF3563A4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{39F14AF6-27EE-4128-89F4-8DEBA90FBBB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{39F14AF6-27EE-4128-89F4-8DEBA90FBBB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{39F14AF6-27EE-4128-89F4-8DEBA90FBBB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{39F14AF6-27EE-4128-89F4-8DEBA90FBBB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,7 +58,6 @@ Global
 		{BCC1DD7E-B732-F288-F5BE-3D44BD6CD56E} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{73DF7FE2-0E5A-4B41-955E-B82B9F736233} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{CC80A1CF-C357-42EE-A240-8A31CF3563A4} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
-		{39F14AF6-27EE-4128-89F4-8DEBA90FBBB1} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {95A1C08A-71C8-4947-83F4-75F40891B197}

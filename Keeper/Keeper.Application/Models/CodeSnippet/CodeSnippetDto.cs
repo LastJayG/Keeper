@@ -1,0 +1,9 @@
+﻿using Keeper.Core.Enums;
+
+namespace Keeper.Application.Models.CodeSnippet;
+
+public record CodeSnippetDto(Guid Id,
+    string Title,
+    string Description,
+    string Code,
+    ProgrammingLanguage ProgrammingLanguage);

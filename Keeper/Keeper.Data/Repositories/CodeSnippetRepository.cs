@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Keeper.Data.Repositories;
 
-public class CodeSnippetRepository(KeeperDbContext context, ISpecificationEvaluator<CodeSnippetEntity> specificationEvaluator)
+public class CodeSnippetRepository(KeeperDbContext context, ISpecificationEvaluator<CodeSnippetEntity> specificationEvaluator) : ICodeSnippetRepository
 {
     public async Task<CodeSnippetEntity> GetByIdAsync(int id)
     {
@@ -30,7 +30,7 @@ public class CodeSnippetRepository(KeeperDbContext context, ISpecificationEvalua
         return await query.CountAsync();
     }
 
-    public async Task<CodeSnippetEntity> AddAsync(CodeSnippetEntity entity)
+    public async Task<CodeSnippetEntity> CreateAsync(CodeSnippetEntity entity)
     {
         await context.CodeSnippets.AddAsync(entity);
         return entity;

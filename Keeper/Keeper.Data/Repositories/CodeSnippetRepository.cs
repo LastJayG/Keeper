@@ -38,6 +38,7 @@ public class CodeSnippetRepository(KeeperDbContext context, ISpecificationEvalua
 
     public async Task<CodeSnippetEntity> UpdateAsync(CodeSnippetEntity entity)
     {
+        entity.UpdatedAt = DateTime.UtcNow;
         context.CodeSnippets.Update(entity);
         return entity;
     }

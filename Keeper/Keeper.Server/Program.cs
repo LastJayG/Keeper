@@ -1,3 +1,5 @@
+using Keeper.Server.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // You can change it to "false" in appsettings.json
@@ -7,9 +9,18 @@ if (isRunOnAspire == "true")
     builder.AddServiceDefaults();
 }
 
+builder.Services.AddServices();
+
 builder.Services.AddControllers();
-builder.Services.AddSwaggerGen();
-builder.Services.AddOpenApi();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Title = "Keeper API",
+        Version = "v1"
+    });
+});
 
 var app = builder.Build();
 
@@ -20,20 +31,15 @@ app.MapStaticAssets();
 
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
-        options.RoutePrefix = string.Empty; // Change string.Empty to "swagger" to remove SwaggerUI page as index page
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Keeper API V1");
+        options.RoutePrefix = "swagger"; // Change string.Empty to "swagger" to remove SwaggerUI page as index page
     });
 }
-
-app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.MapFallbackToFile("/index.html");
-
 app.Run();

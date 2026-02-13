@@ -6,9 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Keeper.Data.Repositories;
 
-public class FolderRepository(KeeperDbContext context, ISpecificationEvaluator<FolderEntity> specificationEvaluator)
+public class FolderRepository(KeeperDbContext context, ISpecificationEvaluator<FolderEntity> specificationEvaluator) : IFolderRepository
 {
-    public async Task<FolderEntity> GetByIdAsync(int id)
+    public async Task<FolderEntity> GetByIdAsync(Guid id)
     {
         return await context.Folders.FindAsync(id);
     }
@@ -30,7 +30,7 @@ public class FolderRepository(KeeperDbContext context, ISpecificationEvaluator<F
         return await query.CountAsync();
     }
 
-    public async Task<FolderEntity> AddAsync(FolderEntity entity)
+    public async Task<FolderEntity> CreateAsync(FolderEntity entity)
     {
         await context.Folders.AddAsync(entity);
         return entity;
@@ -39,6 +39,7 @@ public class FolderRepository(KeeperDbContext context, ISpecificationEvaluator<F
     public async Task<FolderEntity> UpdateAsync(FolderEntity entity)
     {
         context.Folders.Update(entity);
+        entity.UpdatedAt = DateTime.UtcNow;
         return entity;
     }
 

@@ -2,8 +2,12 @@
 
 namespace Keeper.Application.Models.CodeSnippet;
 
-public record CodeSnippetDto(Guid Id,
+public record CodeSnippetDto(
+    Guid Id,
     string Title,
     string Description,
     string Code,
-    ProgrammingLanguage ProgrammingLanguage);
+    ProgrammingLanguage ProgrammingLanguage,
+    DateTime CreatedAt,
+    DateTime UpdatedAt,
+    Guid FolderId);

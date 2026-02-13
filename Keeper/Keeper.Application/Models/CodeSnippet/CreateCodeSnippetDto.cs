@@ -6,4 +6,5 @@ public record CreateCodeSnippetDto(
     string Title,
     string Description,
     string Code,
-    ProgrammingLanguage ProgrammingLanguage);
+    ProgrammingLanguage ProgrammingLanguage,
+    Guid FolderId);

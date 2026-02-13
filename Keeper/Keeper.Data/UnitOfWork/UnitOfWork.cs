@@ -4,16 +4,17 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Keeper.Data.UnitOfWork;
 
-public class UnitOfWork(KeeperDbContext context, IDbContextTransaction? transaction) : IUnitOfWork
+public class UnitOfWork(KeeperDbContext context) : IUnitOfWork
 {
+    private IDbContextTransaction? _transaction;
     public async Task BeginTransactionAsync()
     {
-        if (transaction != null)
+        if (_transaction != null)
         {
-            throw new InvalidOperationException("A transaction is already in progress.");
+            throw new InvalidOperationException("A _transaction is already in progress.");
         }
 
-        transaction = await context.Database.BeginTransactionAsync();
+        _transaction = await context.Database.BeginTransactionAsync();
     }
 
     public async Task CommitTransactionAsync()
@@ -21,7 +22,7 @@ public class UnitOfWork(KeeperDbContext context, IDbContextTransaction? transact
         try
         {
             await context.SaveChangesAsync();
-            await transaction?.CommitAsync()!;
+            await _transaction?.CommitAsync()!;
         }
         catch
         {
@@ -30,10 +31,10 @@ public class UnitOfWork(KeeperDbContext context, IDbContextTransaction? transact
         }
         finally
         {
-            if (transaction != null)
+            if (_transaction != null)
             {
-                await transaction.DisposeAsync();
-                transaction = null;
+                await _transaction.DisposeAsync();
+                _transaction = null;
             }
         }
     }
@@ -42,14 +43,14 @@ public class UnitOfWork(KeeperDbContext context, IDbContextTransaction? transact
     {
         try
         {
-            await transaction?.RollbackAsync()!;
+            await _transaction?.RollbackAsync()!;
         }
         finally
         {
-            if (transaction != null)
+            if (_transaction != null)
             {
-                await transaction.DisposeAsync();
-                transaction = null;
+                await _transaction.DisposeAsync();
+                _transaction = null;
             }
         }
     }

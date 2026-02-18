@@ -17,11 +17,11 @@ export const theme = createTheme({
     },
     background: {
       default: '#f4faff',
-      paper: '#eff1ed',
+      paper: '#FFE9A2',
     },
      text: {
       primary: '#222e50',
-      secondary: '#eff1ed'
+      secondary: '#f4faff'
     },
      action: {
       active: 'rgba(0, 0, 0, 0.54)',
@@ -32,6 +32,6 @@ export const theme = createTheme({
     },
   },
   typography: {
-    fontFamily:  '"Fjalla One", "Arial", sans-serif',
+    fontFamily:  '"Handjet", sans-serif',
   },
 });

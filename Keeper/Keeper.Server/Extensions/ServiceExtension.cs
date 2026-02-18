@@ -13,6 +13,16 @@ public static class ServiceExtension
 {
     public static IServiceCollection AddServices(this IServiceCollection services)
     {
+        services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAll", policy =>
+            {
+                policy.AllowAnyOrigin() 
+                      .AllowAnyHeader()
+                      .AllowAnyMethod();
+            });
+        });
+
         services.AddDbContext<KeeperDbContext>();
         services.AddAutoMapper(typeof(AssemblyDefiner).Assembly);
 

@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Box, Grid, Paper, Button, Stack, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import { theme } from '../../theme';
 
-const MainPagePresenter: React.FC = ({}) => {
+const MainPagePresenter: React.FC = () => {
   return (
     <>
       <Box

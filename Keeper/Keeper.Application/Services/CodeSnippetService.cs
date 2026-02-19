@@ -9,7 +9,7 @@ namespace Keeper.Application.Services;
 
 public class CodeSnippetService(ICodeSnippetRepository codeSnippetRepository, IMapper mapper, IUnitOfWork unitOfWork) : ICodeSnippetService
 {
-    public async Task<CodeSnippetDto?> GetByIdAsync(int id)
+    public async Task<CodeSnippetDto?> GetByIdAsync(Guid id)
     {
         var entity = await codeSnippetRepository.GetByIdAsync(id);
         return entity == null ? null : mapper.Map<CodeSnippetDto>(entity);
@@ -36,7 +36,7 @@ public class CodeSnippetService(ICodeSnippetRepository codeSnippetRepository, IM
         return mapper.Map<CodeSnippetDto>(entity);
     }
 
-    public async Task<CodeSnippetDto?> UpdateAsync(int id, UpdateCodeSnippetDto updateDto)
+    public async Task<CodeSnippetDto?> UpdateAsync(Guid id, UpdateCodeSnippetDto updateDto)
     {
         var entity = await codeSnippetRepository.GetByIdAsync(id);
         if (entity == null)
@@ -50,7 +50,7 @@ public class CodeSnippetService(ICodeSnippetRepository codeSnippetRepository, IM
         return mapper.Map<CodeSnippetDto>(entity);
     }
 
-    public async Task<bool> DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(Guid id)
     {
         var entity = await codeSnippetRepository.GetByIdAsync(id);
         if (entity == null)
@@ -62,7 +62,7 @@ public class CodeSnippetService(ICodeSnippetRepository codeSnippetRepository, IM
         return true;
     }
 
-    public async Task<bool> ExistsAsync(int id)
+    public async Task<bool> ExistsAsync(Guid id)
     {
         var entity = await codeSnippetRepository.GetByIdAsync(id);
         return entity != null;

@@ -8,7 +8,7 @@ namespace Keeper.Data.Repositories;
 
 public class CodeSnippetRepository(KeeperDbContext context, ISpecificationEvaluator<CodeSnippetEntity> specificationEvaluator) : ICodeSnippetRepository
 {
-    public async Task<CodeSnippetEntity> GetByIdAsync(int id)
+    public async Task<CodeSnippetEntity> GetByIdAsync(Guid id)
     {
         return await context.CodeSnippets.FindAsync(id);
     }

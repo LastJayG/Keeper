@@ -1,4 +1,5 @@
 ﻿using Keeper.Core.Entities;
+using Keeper.Core.Enums;
 using Keeper.Data.Specifications;
 
 namespace Keeper.Data.Interfaces;
@@ -9,6 +10,7 @@ public interface ICodeSnippetRepository
     Task DeleteAsync(CodeSnippetEntity entity);
     Task<IReadOnlyList<CodeSnippetEntity>> GetAllAsync();
     Task<IReadOnlyList<CodeSnippetEntity>> GetAsync(BaseSpecification<CodeSnippetEntity> spec);
-    Task<CodeSnippetEntity> GetByIdAsync(int id);
+    Task<CodeSnippetEntity> GetByIdAsync(Guid id);
     Task<CodeSnippetEntity> UpdateAsync(CodeSnippetEntity entity);
+    Task<IReadOnlyList<ProgrammingLanguage>> GetLanguagesByFolderIdAsync(Guid folderId);
 }

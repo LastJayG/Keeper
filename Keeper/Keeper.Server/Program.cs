@@ -31,6 +31,8 @@ app.UseCors("AllowAll");
 app.UseDefaultFiles();
 app.MapStaticAssets();
 
+await app.SeedDataAsync();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -44,4 +46,5 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
+
 app.Run();

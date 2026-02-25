@@ -1,4 +1,5 @@
 ﻿using Keeper.Core.Entities;
+using Keeper.Core.Enums;
 using Keeper.Data.Context;
 using Keeper.Data.Interfaces;
 using Keeper.Data.Specifications;
@@ -8,7 +9,7 @@ namespace Keeper.Data.Repositories;
 
 public class CodeSnippetRepository(KeeperDbContext context, ISpecificationEvaluator<CodeSnippetEntity> specificationEvaluator) : ICodeSnippetRepository
 {
-    public async Task<CodeSnippetEntity> GetByIdAsync(int id)
+    public async Task<CodeSnippetEntity> GetByIdAsync(Guid id)
     {
         return await context.CodeSnippets.FindAsync(id);
     }
@@ -22,6 +23,15 @@ public class CodeSnippetRepository(KeeperDbContext context, ISpecificationEvalua
     {
         var query = specificationEvaluator.GetQuery(context.CodeSnippets.AsQueryable(), spec);
         return await query.ToListAsync();
+    }
+
+    public async Task<IReadOnlyList<ProgrammingLanguage>> GetLanguagesByFolderIdAsync(Guid folderId)
+    {
+        return await context.CodeSnippets
+            .Where(s => s.FolderId == folderId)
+            .Select(s => s.ProgrammingLanguage)
+            .Distinct()
+            .ToListAsync();
     }
 
     public async Task<int> CountAsync(BaseSpecification<CodeSnippetEntity> spec)

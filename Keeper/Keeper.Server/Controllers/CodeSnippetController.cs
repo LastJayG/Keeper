@@ -1,4 +1,5 @@
-﻿using Keeper.Application.Interfaces;
+﻿using System;
+using Keeper.Application.Interfaces;
 using Keeper.Application.Models.CodeSnippet;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,7 +20,7 @@ public class CodeSnippetController(ICodeSnippetService codeSnippetService) : Con
     [HttpGet("{id:guid}")]
     [ProducesResponseType(typeof(CodeSnippetDto), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<CodeSnippetDto>> GetById(int id)
+    public async Task<ActionResult<CodeSnippetDto>> GetById(Guid id)
     {
         var snippet = await codeSnippetService.GetByIdAsync(id);
 
@@ -54,7 +55,7 @@ public class CodeSnippetController(ICodeSnippetService codeSnippetService) : Con
     [ProducesResponseType(typeof(CodeSnippetDto), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<CodeSnippetDto>> Update(int id, [FromBody] UpdateCodeSnippetDto updateDto)
+    public async Task<ActionResult<CodeSnippetDto>> Update(Guid id, [FromBody] UpdateCodeSnippetDto updateDto)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
@@ -75,7 +76,7 @@ public class CodeSnippetController(ICodeSnippetService codeSnippetService) : Con
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Delete(int id)
+    public async Task<IActionResult> Delete(Guid id)
     {
         var result = await codeSnippetService.DeleteAsync(id);
 
@@ -93,7 +94,7 @@ public class CodeSnippetController(ICodeSnippetService codeSnippetService) : Con
     [HttpHead("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Exists(int id)
+    public async Task<IActionResult> Exists(Guid id)
     {
         var exists = await codeSnippetService.ExistsAsync(id);
 

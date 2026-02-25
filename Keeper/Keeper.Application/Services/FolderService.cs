@@ -8,6 +8,7 @@ using Keeper.Data.Specifications;
 namespace Keeper.Application.Services;
 public class FolderService(
     IFolderRepository folderRepository,
+    ICodeSnippetRepository codeSnippetRepository,
     IMapper mapper,
     IUnitOfWork unitOfWork) : IFolderService
 {
@@ -15,6 +16,12 @@ public class FolderService(
     {
         var entity = await folderRepository.GetByIdAsync(id);
         return entity == null ? null : mapper.Map<FolderDto>(entity);
+    }
+
+    public async Task<IReadOnlyList<string>> GetFolderLanguages(Guid id)
+    {
+        var languages = await codeSnippetRepository.GetLanguagesByFolderIdAsync(id);
+        return languages.Select(l => l.ToString()).ToList();
     }
 
     public async Task<IReadOnlyList<FolderDto>> GetAllAsync()

@@ -42,17 +42,17 @@ public class DataSeeder
             UpdatedAt = DateTime.UtcNow
         };
 
-        var bashFolder = new FolderEntity
+        var differentFolder = new FolderEntity
         {
             Id = Guid.Parse("cccccccc-cccc-cccc-cccc-cccccccccccc"),
-            Title = "Bash Scripts",
+            Title = "Different Scripts",
             CreatedAt = DateTime.UtcNow,
             UpdatedAt = DateTime.UtcNow
         };
 
         await folderRepository.CreateAsync(csharpFolder);
         await folderRepository.CreateAsync(sqlFolder);
-        await folderRepository.CreateAsync(bashFolder);
+        await folderRepository.CreateAsync(differentFolder);
 
         var snippets = new List<CodeSnippetEntity>
         {
@@ -119,7 +119,23 @@ public class DataSeeder
                        echo "Docker cleanup complete."
                        """,
                 ProgrammingLanguage = ProgrammingLanguage.Bash,
-                FolderId = bashFolder.Id,
+                FolderId = differentFolder.Id,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            },
+             new()
+            {
+                Title = "Pagination Query",
+                Description = "SQL query with pagination using OFFSET and FETCH",
+                Code = """
+                       SELECT *
+                       FROM Items
+                       ORDER BY CreatedAt DESC
+                       OFFSET (@Page - 1) * @PageSize ROWS
+                       FETCH NEXT @PageSize ROWS ONLY;
+                       """,
+                ProgrammingLanguage = ProgrammingLanguage.SQL,
+                FolderId = differentFolder.Id,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             }

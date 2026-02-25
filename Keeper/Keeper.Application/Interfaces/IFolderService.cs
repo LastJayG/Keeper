@@ -13,4 +13,5 @@ public interface IFolderService
     Task<FolderDto?> UpdateAsync(Guid id, UpdateFolderDto updateDto);
     Task<bool> DeleteAsync(Guid id);
     Task<bool> ExistsAsync(Guid id);
+    Task<IReadOnlyList<string>> GetFolderLanguages(Guid id);
 }

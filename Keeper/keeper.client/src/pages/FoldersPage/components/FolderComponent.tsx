@@ -6,14 +6,22 @@ interface FolderProps {
   number: number;
   title: string;
   createdAt: string;
+  languages: Record<string, number>;
   onClick?: () => void;
 }
 
 const FolderComponent: React.FC<FolderProps> = ({
     number,
     title,
-    createdAt
+    createdAt,
+    languages
 }) => {
+    const pieData = Object.entries(languages).map(([lang, percent], index) => ({
+        id: index,
+        value: percent,
+        label: lang,
+    }));
+
     return (
         <Box sx={{
                 position: 'relative',
@@ -64,52 +72,14 @@ const FolderComponent: React.FC<FolderProps> = ({
                             </CardContent>
                         </Stack>
 
-                        {/* Правая часть - чарт */}
-                        <PieChart
-                            series={[
-                                {
-                                    data: [
-                                        { id: 0, value: 10, label: 'series A' },
-                                        { id: 1, value: 15, label: 'series B' },
-                                        { id: 2, value: 20, label: 'series C' },
-                                    ],
-                                },
-                            ]}
+                         <PieChart
+                            series={[{ data: pieData.length > 0 ? pieData : [{ id: 0, value: 1, label: 'Нет данных' }] }]}
                             width={200}
                             height={200}
                         />
                     </Stack>
                 </Box>
             </Box>
-        /*<Card>
-            <Stack direction="row" alignItems="center" justifyContent="space-between">
-                <Stack>
-                    <CardContent>
-                        <Typography gutterBottom variant='h5'>{number}</Typography>
-                    </CardContent>
-                    <CardContent>
-                        <Typography gutterBottom variant='h4'>{title}</Typography>
-                    </CardContent>
-                    <CardContent>
-                        <Typography gutterBottom variant='h5'>{new Date(createdAt).toLocaleDateString()}</Typography>
-                    </CardContent>
-                </Stack>
-
-                <PieChart sx={{}}
-                    series={[
-                        {
-                        data: [
-                            { id: 0, value: 10, label: 'series A' },
-                            { id: 1, value: 15, label: 'series B' },
-                            { id: 2, value: 20, label: 'series C' },
-                        ],
-                        },
-                    ]}
-                    width={200}
-                    height={200}
-                />
-            </Stack>
-        </Card>*/
     );
 }
 

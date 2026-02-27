@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Keeper.Server.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +12,9 @@ if (isRunOnAspire == "true")
 
 builder.Services.AddServices();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(o =>
+        o.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {

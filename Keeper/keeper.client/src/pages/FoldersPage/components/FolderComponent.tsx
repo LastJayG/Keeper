@@ -1,6 +1,6 @@
 import { Box, Card, CardContent, Stack, Typography } from "@mui/material";
-import { PieChart } from '@mui/x-charts/PieChart';
-import { theme } from "../../../theme";
+import { pieArcLabelClasses, PieChart } from '@mui/x-charts/PieChart';
+import { chartColors, theme } from "../../../theme";
 
 interface FolderProps {
   number: number;
@@ -20,6 +20,7 @@ const FolderComponent: React.FC<FolderProps> = ({
         id: index,
         value: percent,
         label: lang,
+        color: chartColors[index % chartColors.length],
     }));
 
     return (
@@ -59,23 +60,33 @@ const FolderComponent: React.FC<FolderProps> = ({
                                 <Typography variant='h5' color={theme.palette.text.primary}>
                                     {number}
                                 </Typography>
-                            </CardContent>
-                            <CardContent>
                                 <Typography variant='h4' color={theme.palette.text.primary}>
                                     {title}
                                 </Typography>
-                            </CardContent>
-                            <CardContent>
                                 <Typography variant='h5' color={theme.palette.text.primary}>
                                     {new Date(createdAt).toLocaleDateString()}
                                 </Typography>
                             </CardContent>
                         </Stack>
 
-                         <PieChart
-                            series={[{ data: pieData.length > 0 ? pieData : [{ id: 0, value: 1, label: 'Нет данных' }] }]}
+                        <PieChart
+                            series={[{ data: pieData.length > 0 ? pieData : [{ id: 0, value: 1, label: 'Нет данных' }],
+                            arcLabel: (item) => `${item.value}%`,
+                            arcLabelMinAngle: 20, 
+                        }]}
                             width={200}
                             height={200}
+                            skipAnimation
+                            sx = {{
+                                ['& .MuiChartsLegend-label']: {
+                                    fontSize: '30px !important',
+                                },
+                                [`& .${pieArcLabelClasses.root}`]: {
+                                    fill: theme.palette.text.secondary,
+                                    fontWeight: 'bold',
+                                    fontSize: '20px',
+                                },
+                            }}
                         />
                     </Stack>
                 </Box>

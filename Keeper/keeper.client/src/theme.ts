@@ -32,6 +32,17 @@ export const theme = createTheme({
     },
   },
   typography: {
-    fontFamily:  '"Handjet", sans-serif',
+    fontFamily:  '"Handjet", sans-serif'
   },
 });
+
+export const chartColors = [
+  '#177E89',
+  '#082d0f',
+  '#5c415d',
+  '#F08A4B',
+  '#A29F15',
+  '#A30000',
+  '#F6839C',
+  '#011936',
+];

@@ -1,5 +1,6 @@
 ﻿using Keeper.Application.Models.Folder;
 using Keeper.Core.Entities;
+using Keeper.Core.Enums;
 using Keeper.Data.Specifications;
 
 namespace Keeper.Application.Interfaces;
@@ -13,5 +14,5 @@ public interface IFolderService
     Task<FolderDto?> UpdateAsync(Guid id, UpdateFolderDto updateDto);
     Task<bool> DeleteAsync(Guid id);
     Task<bool> ExistsAsync(Guid id);
-    Task<IReadOnlyList<string>> GetFolderLanguages(Guid id);
+    Task<IReadOnlyDictionary<ProgrammingLanguage, decimal>> GetFolderLanguages(Guid id);
 }

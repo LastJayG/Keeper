@@ -12,5 +12,5 @@ public interface ICodeSnippetRepository
     Task<IReadOnlyList<CodeSnippetEntity>> GetAsync(BaseSpecification<CodeSnippetEntity> spec);
     Task<CodeSnippetEntity> GetByIdAsync(Guid id);
     Task<CodeSnippetEntity> UpdateAsync(CodeSnippetEntity entity);
-    Task<IReadOnlyList<ProgrammingLanguage>> GetLanguagesByFolderIdAsync(Guid folderId);
+    Task<IReadOnlyDictionary<ProgrammingLanguage, decimal>> GetLanguagesByFolderIdAsync(Guid folderId);
 }

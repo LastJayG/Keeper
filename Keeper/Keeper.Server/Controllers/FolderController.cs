@@ -37,7 +37,7 @@ public class FolderController(IFolderService folderService) : ControllerBase
     [HttpGet("{id:guid}/languages")]
     [ProducesResponseType(typeof(FolderDto), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<FolderDto>> GetLanguagesByFolderId(Guid id)
+    public async Task<ActionResult> GetLanguagesByFolderId(Guid id)
     {
         var languages = await folderService.GetFolderLanguages(id);
         return Ok(languages);

@@ -12,11 +12,20 @@ const apiClient = axios.create({
 export const api = {
   async getFolders() {
     try {
-    const response = await apiClient.get<FolderDto[]>('api/Folder');
-    return response.data;
+      const response = await apiClient.get<FolderDto[]>('api/Folder');
+      return response.data;
     }
     catch (error:any) {
         throw error;
     }
+  },
+
+  async getFolderLanguages(id: string) {
+  try {
+    const response = await apiClient.get<Record<string, number>>(`api/Folder/${id}/languages`);
+    return response.data;
+  } catch (error: any) {
+    throw error;
   }
+}
 };

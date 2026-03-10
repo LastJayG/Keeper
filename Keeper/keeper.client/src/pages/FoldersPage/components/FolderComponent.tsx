@@ -1,19 +1,28 @@
 import { Box, Card, CardContent, Stack, Typography } from "@mui/material";
-import { PieChart } from '@mui/x-charts/PieChart';
-import { theme } from "../../../theme";
+import { pieArcLabelClasses, PieChart } from '@mui/x-charts/PieChart';
+import { chartColors, theme } from "../../../theme";
 
 interface FolderProps {
   number: number;
   title: string;
   createdAt: string;
+  languages: Record<string, number>;
   onClick?: () => void;
 }
 
 const FolderComponent: React.FC<FolderProps> = ({
     number,
     title,
-    createdAt
+    createdAt,
+    languages
 }) => {
+    const pieData = Object.entries(languages).map(([lang, percent], index) => ({
+        id: index,
+        value: percent,
+        label: lang,
+        color: chartColors[index % chartColors.length],
+    }));
+
     return (
         <Box sx={{
                 position: 'relative',
@@ -51,65 +60,37 @@ const FolderComponent: React.FC<FolderProps> = ({
                                 <Typography variant='h5' color={theme.palette.text.primary}>
                                     {number}
                                 </Typography>
-                            </CardContent>
-                            <CardContent>
                                 <Typography variant='h4' color={theme.palette.text.primary}>
                                     {title}
                                 </Typography>
-                            </CardContent>
-                            <CardContent>
                                 <Typography variant='h5' color={theme.palette.text.primary}>
                                     {new Date(createdAt).toLocaleDateString()}
                                 </Typography>
                             </CardContent>
                         </Stack>
 
-                        {/* Правая часть - чарт */}
                         <PieChart
-                            series={[
-                                {
-                                    data: [
-                                        { id: 0, value: 10, label: 'series A' },
-                                        { id: 1, value: 15, label: 'series B' },
-                                        { id: 2, value: 20, label: 'series C' },
-                                    ],
-                                },
-                            ]}
+                            series={[{ data: pieData.length > 0 ? pieData : [{ id: 0, value: 1, label: 'Нет данных' }],
+                            arcLabel: (item) => `${item.value}%`,
+                            arcLabelMinAngle: 20, 
+                        }]}
                             width={200}
                             height={200}
+                            skipAnimation
+                            sx = {{
+                                ['& .MuiChartsLegend-label']: {
+                                    fontSize: '30px !important',
+                                },
+                                [`& .${pieArcLabelClasses.root}`]: {
+                                    fill: theme.palette.text.secondary,
+                                    fontWeight: 'bold',
+                                    fontSize: '20px',
+                                },
+                            }}
                         />
                     </Stack>
                 </Box>
             </Box>
-        /*<Card>
-            <Stack direction="row" alignItems="center" justifyContent="space-between">
-                <Stack>
-                    <CardContent>
-                        <Typography gutterBottom variant='h5'>{number}</Typography>
-                    </CardContent>
-                    <CardContent>
-                        <Typography gutterBottom variant='h4'>{title}</Typography>
-                    </CardContent>
-                    <CardContent>
-                        <Typography gutterBottom variant='h5'>{new Date(createdAt).toLocaleDateString()}</Typography>
-                    </CardContent>
-                </Stack>
-
-                <PieChart sx={{}}
-                    series={[
-                        {
-                        data: [
-                            { id: 0, value: 10, label: 'series A' },
-                            { id: 1, value: 15, label: 'series B' },
-                            { id: 2, value: 20, label: 'series C' },
-                        ],
-                        },
-                    ]}
-                    width={200}
-                    height={200}
-                />
-            </Stack>
-        </Card>*/
     );
 }
 

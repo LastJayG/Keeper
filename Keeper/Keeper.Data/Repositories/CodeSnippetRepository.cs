@@ -25,13 +25,23 @@ public class CodeSnippetRepository(KeeperDbContext context, ISpecificationEvalua
         return await query.ToListAsync();
     }
 
-    public async Task<IReadOnlyList<ProgrammingLanguage>> GetLanguagesByFolderIdAsync(Guid folderId)
+    public async Task<IReadOnlyDictionary<ProgrammingLanguage, decimal>> GetLanguagesByFolderIdAsync(Guid folderId)
     {
-        return await context.CodeSnippets
+        var snippets = await context.CodeSnippets
             .Where(s => s.FolderId == folderId)
-            .Select(s => s.ProgrammingLanguage)
-            .Distinct()
+            .GroupBy(s => s.ProgrammingLanguage)
+            .Select(g => new { Language = g.Key, Count = g.Count() })
             .ToListAsync();
+
+        var total = snippets.Sum(s => s.Count);
+
+        if (total == 0)
+            return new Dictionary<ProgrammingLanguage, decimal>();
+
+        return snippets.ToDictionary(
+            s => s.Language,
+            s => Math.Round((decimal)s.Count / total * 100, 2)
+        );
     }
 
     public async Task<int> CountAsync(BaseSpecification<CodeSnippetEntity> spec)

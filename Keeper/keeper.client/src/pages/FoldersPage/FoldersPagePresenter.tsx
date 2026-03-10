@@ -2,6 +2,7 @@ import { Box, Button, Grid, Paper} from "@mui/material"
 import { theme } from "../../theme"
 import { FolderDto } from "../../models/folder";
 import FolderComponent from "./components/FolderComponent";
+import { useFolderLanguages } from "../../hooks/useFolderLanguages";
 
 interface FoldersPagePresenterProps {
   folders: FolderDto[];
@@ -12,6 +13,7 @@ const FoldersPagePresenter: React.FC<FoldersPagePresenterProps> = ({
     folders,
     handleGetFolders
 }) => {
+    const { folderLanguages } = useFolderLanguages(folders);
     return <>
         <Box
             sx={{
@@ -22,13 +24,6 @@ const FoldersPagePresenter: React.FC<FoldersPagePresenterProps> = ({
             }}
         >
         <Grid container rowSpacing={2} alignItems='flex-start' sx={{ justifyContent: 'center', margin: 10}}>
-          <Grid size={9}>
-            <Paper elevation={3} sx={{ justifyContent: 'center', p: 3 }}>
-              <Button variant='contained' onClick={handleGetFolders}>
-                {'Get all folders!'}
-              </Button>
-            </Paper>
-        </Grid>
 
         <Grid size={12} display="flex" justifyContent="center">
                     <Box sx={{ maxWidth: '800px', width: '100%'}}>
@@ -40,6 +35,7 @@ const FoldersPagePresenter: React.FC<FoldersPagePresenterProps> = ({
                                             number={index + 1}
                                             title={folder.title}
                                             createdAt={folder.createdAt}
+                                            languages={folderLanguages[folder.id] ?? {}}
                                         />
                                     </Grid>
                                 ))}

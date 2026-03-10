@@ -10,7 +10,7 @@ import MainPageContainer from './pages/MainPage/MainPageContainer';
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline /> 
+      <CssBaseline />
       <HeaderComponent />
       <Routes>
         <Route path={ROUTES.HOME} element={<MainPageContainer />} />

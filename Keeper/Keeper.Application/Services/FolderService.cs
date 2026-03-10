@@ -2,6 +2,7 @@
 using Keeper.Application.Interfaces;
 using Keeper.Application.Models.Folder;
 using Keeper.Core.Entities;
+using Keeper.Core.Enums;
 using Keeper.Data.Interfaces;
 using Keeper.Data.Specifications;
 
@@ -18,10 +19,9 @@ public class FolderService(
         return entity == null ? null : mapper.Map<FolderDto>(entity);
     }
 
-    public async Task<IReadOnlyList<string>> GetFolderLanguages(Guid id)
+    public async Task<IReadOnlyDictionary<ProgrammingLanguage, decimal>> GetFolderLanguages(Guid id)
     {
-        var languages = await codeSnippetRepository.GetLanguagesByFolderIdAsync(id);
-        return languages.Select(l => l.ToString()).ToList();
+        return await codeSnippetRepository.GetLanguagesByFolderIdAsync(id);
     }
 
     public async Task<IReadOnlyList<FolderDto>> GetAllAsync()

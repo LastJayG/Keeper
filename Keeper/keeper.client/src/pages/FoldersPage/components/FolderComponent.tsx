@@ -14,7 +14,8 @@ const FolderComponent: React.FC<FolderProps> = ({
     number,
     title,
     createdAt,
-    languages
+    languages,
+    onClick
 }) => {
     const pieData = Object.entries(languages).map(([lang, percent], index) => ({
         id: index,
@@ -24,7 +25,7 @@ const FolderComponent: React.FC<FolderProps> = ({
     }));
 
     return (
-        <Box sx={{
+        <Box onClick={onClick} sx={{
                 position: 'relative',
                 '&::before': {
                     content: '""',

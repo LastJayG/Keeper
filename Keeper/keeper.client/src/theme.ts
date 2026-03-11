@@ -2,13 +2,13 @@ import { createTheme } from '@mui/material/styles';
 
 export const theme = createTheme({
   palette: {
-     primary: {
+    primary: {
       main: '#647aa3',
       light: '#a9def9',
       dark: '#383b53',
       contrastText: '#f4faff',
     },
-    
+
     secondary: {
       main: '#b084cc',
       light: '#b7adcf',
@@ -19,11 +19,11 @@ export const theme = createTheme({
       default: '#f4faff',
       paper: '#FFE9A2',
     },
-     text: {
+    text: {
       primary: '#222e50',
-      secondary: '#f4faff'
+      secondary: '#f4faff',
     },
-     action: {
+    action: {
       active: 'rgba(0, 0, 0, 0.54)',
       hover: 'rgba(0, 0, 0, 0.04)',
       selected: 'rgba(0, 0, 0, 0.08)',
@@ -32,7 +32,7 @@ export const theme = createTheme({
     },
   },
   typography: {
-    fontFamily:  '"Handjet", sans-serif'
+    fontFamily: '"Handjet", sans-serif',
   },
 });
 

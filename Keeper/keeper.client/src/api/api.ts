@@ -15,28 +15,28 @@ export const api = {
     try {
       const response = await apiClient.get<FolderDto[]>('api/Folder');
       return response.data;
-    }
-    catch (error:any) {
-        throw error;
+    } catch (error: any) {
+      throw error;
     }
   },
 
   async getCodeSnippetsByFolderId(folderId: string) {
     try {
-      const response = await apiClient.get<CodeSnippetShortDto[]>(`api/CodeSnippet/${folderId}/short`);
+      const response = await apiClient.get<CodeSnippetShortDto[]>(
+        `api/CodeSnippet/${folderId}/short`
+      );
       return response.data;
-    }
-    catch (error:any) {
+    } catch (error: any) {
       throw error;
     }
   },
 
   async getFolderLanguages(id: string) {
-  try {
-    const response = await apiClient.get<Record<string, number>>(`api/Folder/${id}/languages`);
-    return response.data;
-  } catch (error: any) {
-    throw error;
-  }
-}
+    try {
+      const response = await apiClient.get<Record<string, number>>(`api/Folder/${id}/languages`);
+      return response.data;
+    } catch (error: any) {
+      throw error;
+    }
+  },
 };

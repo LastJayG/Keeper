@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { api } from "../../api/api";
-import { FolderDto } from "../../models/folder";
-import FoldersPagePresenter from "./FoldersPagePresenter";
+import { useEffect, useState } from 'react';
+import { api } from '../../api/api';
+import { FolderDto } from '../../models/folder';
+import FoldersPagePresenter from './FoldersPagePresenter';
 
 const FoldersPageContainer: React.FC = () => {
-const [folders, setFolders] = useState<FolderDto[]>([]);
+  const [folders, setFolders] = useState<FolderDto[]>([]);
   const handleGetFolders = async () => {
     try {
       const data = await api.getFolders();
@@ -14,13 +14,11 @@ const [folders, setFolders] = useState<FolderDto[]>([]);
     }
   };
 
-    useEffect(() => {
-        handleGetFolders();
-    }, []);
+  useEffect(() => {
+    handleGetFolders();
+  }, []);
 
-  return (
-    <FoldersPagePresenter folders={folders} handleGetFolders={handleGetFolders}/>
-  );
-}
+  return <FoldersPagePresenter folders={folders} handleGetFolders={handleGetFolders} />;
+};
 
 export default FoldersPageContainer;

@@ -9,6 +9,7 @@ public class CodeSnippetMappingProfile : Profile
     public CodeSnippetMappingProfile()
     {
         CreateMap<CodeSnippetEntity, CodeSnippetDto>();
+        CreateMap<CodeSnippetEntity, CodeSnippetShortDto>();
         CreateMap<CreateCodeSnippetDto, CodeSnippetEntity>();
         CreateMap<UpdateCodeSnippetDto, CodeSnippetEntity>();
     }

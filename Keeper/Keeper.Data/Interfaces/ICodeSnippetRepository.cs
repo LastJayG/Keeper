@@ -9,6 +9,7 @@ public interface ICodeSnippetRepository
     Task<int> CountAsync(BaseSpecification<CodeSnippetEntity> spec);
     Task DeleteAsync(CodeSnippetEntity entity);
     Task<IReadOnlyList<CodeSnippetEntity>> GetAllAsync();
+    Task<IReadOnlyList<CodeSnippetEntity>> GetAllByFolderIdAsync(Guid folderId);
     Task<IReadOnlyList<CodeSnippetEntity>> GetAsync(BaseSpecification<CodeSnippetEntity> spec);
     Task<CodeSnippetEntity> GetByIdAsync(Guid id);
     Task<CodeSnippetEntity> UpdateAsync(CodeSnippetEntity entity);

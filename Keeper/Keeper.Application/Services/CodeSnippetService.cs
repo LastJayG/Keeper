@@ -7,12 +7,16 @@ using Keeper.Data.Specifications;
 
 namespace Keeper.Application.Services;
 
-public class CodeSnippetService(ICodeSnippetRepository codeSnippetRepository, IMapper mapper, IUnitOfWork unitOfWork) : ICodeSnippetService
+public class CodeSnippetService(
+    ICodeSnippetRepository codeSnippetRepository, 
+    IMapper mapper, 
+    IUnitOfWork unitOfWork) : ICodeSnippetService
 {
     public async Task<CodeSnippetDto?> GetByIdAsync(Guid id)
     {
         var entity = await codeSnippetRepository.GetByIdAsync(id);
-        return entity == null ? null : mapper.Map<CodeSnippetDto>(entity);
+        return entity == null ? 
+            throw new KeyNotFoundException($"Code snippet with id '{id}' was not found.") : mapper.Map<CodeSnippetDto>(entity);
     }
 
     public async Task<IReadOnlyList<CodeSnippetDto>> GetAllAsync()
@@ -43,9 +47,8 @@ public class CodeSnippetService(ICodeSnippetRepository codeSnippetRepository, IM
 
     public async Task<CodeSnippetDto?> UpdateAsync(Guid id, UpdateCodeSnippetDto updateDto)
     {
-        var entity = await codeSnippetRepository.GetByIdAsync(id);
-        if (entity == null)
-            return null;
+        var entity = await codeSnippetRepository.GetByIdAsync(id) ?? 
+            throw new KeyNotFoundException($"Code snippet with id '{id}' was not found.");
 
         var newEntity = mapper.Map<CodeSnippetEntity>(updateDto);
 
@@ -57,10 +60,8 @@ public class CodeSnippetService(ICodeSnippetRepository codeSnippetRepository, IM
 
     public async Task<bool> DeleteAsync(Guid id)
     {
-        var entity = await codeSnippetRepository.GetByIdAsync(id);
-        if (entity == null)
-            return false;
-
+        var entity = await codeSnippetRepository.GetByIdAsync(id) ?? 
+            throw new KeyNotFoundException($"Code snippet with id '{id}' was not found.");
         await codeSnippetRepository.DeleteAsync(entity);
         await unitOfWork.SaveChangesAsync();
 

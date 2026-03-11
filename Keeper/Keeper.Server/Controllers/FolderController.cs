@@ -21,22 +21,11 @@ public class FolderController(IFolderService folderService) : ControllerBase
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     public async Task<ActionResult<FolderDto>> GetById(Guid id)
     {
-        var folder = await folderService.GetByIdAsync(id);
-
-        if (folder == null)
-            return NotFound(new ProblemDetails
-            {
-                Title = "Folder not found",
-                Detail = $"Folder with ID {id} does not exist.",
-                Status = StatusCodes.Status404NotFound
-            });
-
-        return Ok(folder);
+        return Ok(await folderService.GetByIdAsync(id));
     }
 
     [HttpGet("{id:guid}/languages")]
-    [ProducesResponseType(typeof(FolderDto), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(IReadOnlyDictionary<string, decimal>), StatusCodes.Status200OK)]
     public async Task<ActionResult> GetLanguagesByFolderId(Guid id)
     {
         var languages = await folderService.GetFolderLanguages(id);
@@ -48,15 +37,8 @@ public class FolderController(IFolderService folderService) : ControllerBase
     [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<FolderDto>> Create([FromBody] CreateFolderDto createDto)
     {
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
-
         var folder = await folderService.CreateAsync(createDto);
-
-        return CreatedAtAction(
-            nameof(GetById),
-            new { id = folder.Id },
-            folder);
+        return Ok(folder);
     }
 
     [HttpPut("{id:guid}")]
@@ -65,20 +47,7 @@ public class FolderController(IFolderService folderService) : ControllerBase
     [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<FolderDto>> Update(Guid id, [FromBody] UpdateFolderDto updateDto)
     {
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
-
-        var folder = await folderService.UpdateAsync(id, updateDto);
-
-        if (folder == null)
-            return NotFound(new ProblemDetails
-            {
-                Title = "Folder not found",
-                Detail = $"Folder with ID {id} does not exist.",
-                Status = StatusCodes.Status404NotFound
-            });
-
-        return Ok(folder);
+        return Ok(await folderService.UpdateAsync(id, updateDto));
     }
 
     [HttpDelete("{id:guid}")]
@@ -86,16 +55,7 @@ public class FolderController(IFolderService folderService) : ControllerBase
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Delete(Guid id)
     {
-        var result = await folderService.DeleteAsync(id);
-
-        if (!result)
-            return NotFound(new ProblemDetails
-            {
-                Title = "Folder not found",
-                Detail = $"Folder with ID {id} does not exist.",
-                Status = StatusCodes.Status404NotFound
-            });
-
+        await folderService.DeleteAsync(id);
         return NoContent();
     }
 

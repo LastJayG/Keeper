@@ -31,15 +31,6 @@ public class CodeSnippetController(ICodeSnippetService codeSnippetService) : Con
     public async Task<ActionResult<CodeSnippetDto>> GetById(Guid id)
     {
         var snippet = await codeSnippetService.GetByIdAsync(id);
-
-        if (snippet == null)
-            return NotFound(new ProblemDetails
-            {
-                Title = "Code snippet not found",
-                Detail = $"Code snippet with ID {id} does not exist.",
-                Status = StatusCodes.Status404NotFound
-            });
-
         return Ok(snippet);
     }
 
@@ -48,15 +39,8 @@ public class CodeSnippetController(ICodeSnippetService codeSnippetService) : Con
     [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<CodeSnippetDto>> Create([FromBody] CreateCodeSnippetDto createDto)
     {
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
-
         var snippet = await codeSnippetService.CreateAsync(createDto);
-
-        return CreatedAtAction(
-            nameof(GetById),
-            new { id = snippet.Id },
-            snippet);
+        return Ok(snippet);
     }
 
     [HttpPut("{id:guid}")]
@@ -65,19 +49,7 @@ public class CodeSnippetController(ICodeSnippetService codeSnippetService) : Con
     [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<CodeSnippetDto>> Update(Guid id, [FromBody] UpdateCodeSnippetDto updateDto)
     {
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
-
         var snippet = await codeSnippetService.UpdateAsync(id, updateDto);
-
-        if (snippet == null)
-            return NotFound(new ProblemDetails
-            {
-                Title = "Code snippet not found",
-                Detail = $"Code snippet with ID {id} does not exist.",
-                Status = StatusCodes.Status404NotFound
-            });
-
         return Ok(snippet);
     }
 
@@ -86,16 +58,7 @@ public class CodeSnippetController(ICodeSnippetService codeSnippetService) : Con
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Delete(Guid id)
     {
-        var result = await codeSnippetService.DeleteAsync(id);
-
-        if (!result)
-            return NotFound(new ProblemDetails
-            {
-                Title = "Code snippet not found",
-                Detail = $"Code snippet with ID {id} does not exist.",
-                Status = StatusCodes.Status404NotFound
-            });
-
+        await codeSnippetService.DeleteAsync(id);
         return NoContent();
     }
 
@@ -105,7 +68,6 @@ public class CodeSnippetController(ICodeSnippetService codeSnippetService) : Con
     public async Task<IActionResult> Exists(Guid id)
     {
         var exists = await codeSnippetService.ExistsAsync(id);
-
         return exists ? Ok() : NotFound();
     }
 }

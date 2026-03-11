@@ -16,7 +16,7 @@ public class FolderService(
     public async Task<FolderDto?> GetByIdAsync(Guid id)
     {
         var entity = await folderRepository.GetByIdAsync(id);
-        return entity == null ? null : mapper.Map<FolderDto>(entity);
+        return mapper.Map<FolderDto>(entity) ?? throw new KeyNotFoundException($"Folder with id '{id}' was not found.");
     }
 
     public async Task<IReadOnlyDictionary<ProgrammingLanguage, decimal>> GetFolderLanguages(Guid id)
@@ -45,11 +45,10 @@ public class FolderService(
         return mapper.Map<FolderDto>(entity);
     }
 
-    public async Task<FolderDto?> UpdateAsync(Guid id, UpdateFolderDto updateDto)
+    public async Task<FolderDto> UpdateAsync(Guid id, UpdateFolderDto updateDto)
     {
-        var entity = await folderRepository.GetByIdAsync(id);
-        if (entity == null)
-            return null;
+        var entity = await folderRepository.GetByIdAsync(id) ??
+            throw new KeyNotFoundException($"Folder with id '{id}' was not found.");
 
         mapper.Map(updateDto, entity);
 
@@ -61,9 +60,8 @@ public class FolderService(
 
     public async Task<bool> DeleteAsync(Guid id)
     {
-        var entity = await folderRepository.GetByIdAsync(id);
-        if (entity == null)
-            return false;
+        var entity = await folderRepository.GetByIdAsync(id) ??
+            throw new KeyNotFoundException($"Folder with id '{id}' was not found.");
 
         await folderRepository.DeleteAsync(entity);
         await unitOfWork.SaveChangesAsync();

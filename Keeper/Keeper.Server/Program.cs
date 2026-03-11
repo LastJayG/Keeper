@@ -30,7 +30,7 @@ var app = builder.Build();
 app.MapDefaultEndpoints();
 
 app.UseCors("AllowAll");
-
+app.UseExceptionHandler();
 app.UseDefaultFiles();
 app.MapStaticAssets();
 

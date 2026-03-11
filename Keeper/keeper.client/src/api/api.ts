@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { FolderDto } from '../models/folder';
+import { CodeSnippetShortDto } from '../models/codeSnippet';
 const API_URL = 'https://localhost:7254';
 
 const apiClient = axios.create({
@@ -17,6 +18,16 @@ export const api = {
     }
     catch (error:any) {
         throw error;
+    }
+  },
+
+  async getCodeSnippetsByFolderId(folderId: string) {
+    try {
+      const response = await apiClient.get<CodeSnippetShortDto[]>(`api/CodeSnippet/${folderId}/short`);
+      return response.data;
+    }
+    catch (error:any) {
+      throw error;
     }
   },
 

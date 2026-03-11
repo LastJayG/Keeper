@@ -20,6 +20,11 @@ public class CodeSnippetService(ICodeSnippetRepository codeSnippetRepository, IM
         var entities = await codeSnippetRepository.GetAllAsync();
         return mapper.Map<IReadOnlyList<CodeSnippetDto>>(entities);
     } 
+    public async Task<IReadOnlyList<CodeSnippetShortDto>> GetAllShortByFolderIdAsync(Guid folderId)
+    {
+        var entities = await codeSnippetRepository.GetAllByFolderIdAsync(folderId);
+        return mapper.Map<IReadOnlyList<CodeSnippetShortDto>>(entities);
+    }
 
     public async Task<IReadOnlyList<CodeSnippetDto>> GetAsync(BaseSpecification<CodeSnippetEntity> spec)
     {

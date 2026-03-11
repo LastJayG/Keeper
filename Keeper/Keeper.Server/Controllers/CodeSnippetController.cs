@@ -17,6 +17,14 @@ public class CodeSnippetController(ICodeSnippetService codeSnippetService) : Con
         return Ok(snippets);
     }
 
+    [HttpGet("{folderId:guid}/short")]
+    [ProducesResponseType(typeof(IReadOnlyList<CodeSnippetDto>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<IReadOnlyList<CodeSnippetDto>>> GetAllShortByFolderId(Guid folderId)
+    {
+        var snippets = await codeSnippetService.GetAllShortByFolderIdAsync(folderId);
+        return Ok(snippets);
+    }
+
     [HttpGet("{id:guid}")]
     [ProducesResponseType(typeof(CodeSnippetDto), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]

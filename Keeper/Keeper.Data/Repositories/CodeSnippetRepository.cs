@@ -19,6 +19,11 @@ public class CodeSnippetRepository(KeeperDbContext context, ISpecificationEvalua
         return await context.CodeSnippets.ToListAsync();
     }
 
+    public async Task<IReadOnlyList<CodeSnippetEntity>> GetAllByFolderIdAsync(Guid folderId)
+    {
+        return await context.CodeSnippets.Where(cs => cs.FolderId == folderId).ToListAsync();
+    }
+
     public async Task<IReadOnlyList<CodeSnippetEntity>> GetAsync(BaseSpecification<CodeSnippetEntity> spec)
     {
         var query = specificationEvaluator.GetQuery(context.CodeSnippets.AsQueryable(), spec);

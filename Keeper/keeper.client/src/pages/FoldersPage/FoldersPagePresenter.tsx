@@ -3,6 +3,8 @@ import { theme } from "../../theme"
 import { FolderDto } from "../../models/folder";
 import FolderComponent from "./components/FolderComponent";
 import { useFolderLanguages } from "../../hooks/useFolderLanguages";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../routes";
 
 interface FoldersPagePresenterProps {
   folders: FolderDto[];
@@ -10,10 +12,10 @@ interface FoldersPagePresenterProps {
 }
 
 const FoldersPagePresenter: React.FC<FoldersPagePresenterProps> = ({
-    folders,
-    handleGetFolders
+    folders
 }) => {
     const { folderLanguages } = useFolderLanguages(folders);
+    const navigate = useNavigate();
     return <>
         <Box
             sx={{
@@ -36,6 +38,7 @@ const FoldersPagePresenter: React.FC<FoldersPagePresenterProps> = ({
                                             title={folder.title}
                                             createdAt={folder.createdAt}
                                             languages={folderLanguages[folder.id] ?? {}}
+                                            onClick={() => navigate(ROUTES.getCodeSnippets(folder.id))}
                                         />
                                     </Grid>
                                 ))}

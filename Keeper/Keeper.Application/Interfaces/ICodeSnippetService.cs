@@ -1,5 +1,4 @@
-﻿using System;
-using Keeper.Application.Models.CodeSnippet;
+﻿using Keeper.Application.Models.CodeSnippet;
 using Keeper.Core.Entities;
 using Keeper.Data.Specifications;
 

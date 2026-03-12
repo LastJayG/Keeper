@@ -22,6 +22,7 @@ var server = builder.AddProject<Projects.Keeper_Server>("keeper-server")
 // Client
 var client = builder.AddViteApp("keeper-client", "../keeper.client")
     .WithEnvironment("VITE_API_URL", server.GetEndpoint("http"))
-    .WithExternalHttpEndpoints();
+    .WithExternalHttpEndpoints()
+    .WaitFor(server);
 
 builder.Build().Run();

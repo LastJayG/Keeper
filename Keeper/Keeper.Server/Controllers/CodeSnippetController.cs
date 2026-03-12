@@ -1,5 +1,4 @@
-﻿using System;
-using Keeper.Application.Interfaces;
+﻿using Keeper.Application.Interfaces;
 using Keeper.Application.Models.CodeSnippet;
 using Microsoft.AspNetCore.Mvc;
 

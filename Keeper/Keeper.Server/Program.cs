@@ -10,6 +10,7 @@ if (isRunOnAspire == "true")
     builder.AddServiceDefaults();
 }
 
+builder.Host.AddHostTools();
 builder.Services.AddServices();
 
 builder.Services.AddControllers()

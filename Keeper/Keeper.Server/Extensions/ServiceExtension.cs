@@ -6,6 +6,7 @@ using Keeper.Data.Interfaces;
 using Keeper.Data.Repositories;
 using Keeper.Data.Specifications;
 using Keeper.Data.UnitOfWork;
+using Keeper.Server.Handlers;
 
 namespace Keeper.Server.Extensions;
 
@@ -35,6 +36,9 @@ public static class ServiceExtension
 
         services.AddScoped<ICodeSnippetService, CodeSnippetService>();
         services.AddScoped<IFolderService, FolderService>();
+
+        services.AddProblemDetails();
+        services.AddExceptionHandler<CustomExceptionHandler>();
 
         return services;
     }

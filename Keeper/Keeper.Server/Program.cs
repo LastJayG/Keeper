@@ -10,6 +10,7 @@ if (isRunOnAspire == "true")
     builder.AddServiceDefaults();
 }
 
+builder.Host.AddHostTools();
 builder.Services.AddServices();
 
 builder.Services.AddControllers()
@@ -30,7 +31,7 @@ var app = builder.Build();
 app.MapDefaultEndpoints();
 
 app.UseCors("AllowAll");
-
+app.UseExceptionHandler();
 app.UseDefaultFiles();
 app.MapStaticAssets();
 

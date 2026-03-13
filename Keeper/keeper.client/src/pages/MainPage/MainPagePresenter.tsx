@@ -13,10 +13,12 @@ const MainPagePresenter: React.FC = () => {
           minHeight: '100vh',
         }}
       >
-       <Stack sx={{margin: 10, textAlign: 'center'}}>
-            <Typography variant='h1'>Keep your code here!</Typography>
-            <Typography variant='h4'>With us you will never forget about what you once wrote</Typography>
-       </Stack>
+        <Stack sx={{ margin: 10, textAlign: 'center' }}>
+          <Typography variant="h1">Keep your code here!</Typography>
+          <Typography variant="h4">
+            With us you will never forget about what you once wrote
+          </Typography>
+        </Stack>
       </Box>
     </>
   );

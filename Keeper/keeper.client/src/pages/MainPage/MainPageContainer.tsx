@@ -1,9 +1,7 @@
-import MainPagePresenter from "./MainPagePresenter";
+import MainPagePresenter from './MainPagePresenter';
 
 const MainPageContainer: React.FC = () => {
-  return (
-    <MainPagePresenter/>
-  );
+  return <MainPagePresenter />;
 };
 
 export default MainPageContainer;

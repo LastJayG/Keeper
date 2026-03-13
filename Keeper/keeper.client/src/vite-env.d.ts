@@ -1,7 +1,7 @@
 interface ImportMetaEnv {
-  readonly KEEPER_API_URL: string
+  readonly KEEPER_API_URL: string;
 }
 
 interface ImportMeta {
-  readonly env: ImportMetaEnv
+  readonly env: ImportMetaEnv;
 }

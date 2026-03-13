@@ -20,6 +20,15 @@ export const api = {
     }
   },
 
+  async getFolder(folderId: string) {
+    try {
+      const response = await apiClient.get<FolderDto>(`api/Folder/${folderId}`);
+      return response.data;
+    } catch (error: any) {
+      throw error;
+    }
+  },
+
   async getCodeSnippetsByFolderId(folderId: string) {
     try {
       const response = await apiClient.get<CodeSnippetShortDto[]>(

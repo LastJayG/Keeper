@@ -50,6 +50,8 @@ const FolderComponent: React.FC<FolderProps> = ({
           borderRadius: '0 8px 8px 8px',
           boxShadow: '0px 4px 12px rgba(0,0,0,0.3)',
           transition: 'all 0.2s ease',
+          height: '250px',
+          width: '600px',
           padding: 2,
           '&:hover': {
             backgroundColor: theme.palette.background.paper,

@@ -23,7 +23,7 @@ const CodeSnippetsPageContainer: React.FC = () => {
     if (!folderId) return;
     try {
       const data = await api.getFolder(folderId);
-      setFolderTitle(data.title) ;
+      setFolderTitle(data.title);
     } catch (err) {
       console.error('Error fetching code snippets:', err);
     }
@@ -34,7 +34,7 @@ const CodeSnippetsPageContainer: React.FC = () => {
     handleGetFolder();
   }, [folderId]);
 
-  return <CodeSnippetsPagePresenter codeSnippets={codeSnippets} folderTitle={folderTitle}/>;
+  return <CodeSnippetsPagePresenter codeSnippets={codeSnippets} folderTitle={folderTitle} />;
 };
 
 export default CodeSnippetsPageContainer;

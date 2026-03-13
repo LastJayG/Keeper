@@ -27,14 +27,14 @@ const FoldersPagePresenter: React.FC<FoldersPagePresenterProps> = ({ folders }) 
         py: 4,
       }}
     >
-      <Stack sx={{paddingLeft: '100px'}}>
+      <Stack sx={{ paddingLeft: '100px' }}>
         <PageBreadcrumbs crumbs={[{ label: 'Folders' }]} />
 
-        <Box sx={{ maxWidth: '1600px', width: '100%'}}>
+        <Box sx={{ maxWidth: '1600px', width: '100%' }}>
           <Grid container spacing={5} padding={4} justifyContent="center">
             {folders.map((folder, index) => (
               <Grid size={{ xs: 12, xl: 6 }} key={folder.id}>
-                <FolderComponent 
+                <FolderComponent
                   number={index + 1}
                   title={folder.title}
                   createdAt={folder.createdAt}

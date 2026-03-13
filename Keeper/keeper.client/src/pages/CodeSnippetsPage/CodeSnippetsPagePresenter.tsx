@@ -6,11 +6,14 @@ import PageBreadcrumbs from '../common/PageBreadcrumbsComponent';
 import { ROUTES } from '../../routes';
 
 interface CodeSnippetsPagePresenterProps {
-  folderTitle: string,
+  folderTitle: string;
   codeSnippets: CodeSnippetShortDto[];
 }
 
-const CodeSnippetsPagePresenter: React.FC<CodeSnippetsPagePresenterProps> = ({ codeSnippets, folderTitle }) => {
+const CodeSnippetsPagePresenter: React.FC<CodeSnippetsPagePresenterProps> = ({
+  codeSnippets,
+  folderTitle,
+}) => {
   return (
     <Box
       sx={{
@@ -23,10 +26,9 @@ const CodeSnippetsPagePresenter: React.FC<CodeSnippetsPagePresenterProps> = ({ c
       }}
     >
       <Box sx={{ paddingLeft: '100px' }}>
-        <PageBreadcrumbs crumbs={[
-          { label: 'Folders', href: ROUTES.FOLDERS },
-          { label: folderTitle },
-        ]} />
+        <PageBreadcrumbs
+          crumbs={[{ label: 'Folders', href: ROUTES.FOLDERS }, { label: folderTitle }]}
+        />
 
         <Box sx={{ maxWidth: '1600px', width: '100%' }}>
           <Grid container spacing={5} padding={4} justifyContent="center">

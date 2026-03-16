@@ -10,10 +10,11 @@ const MainPagePresenter: React.FC = () => {
         sx={{
           width: '100%',
           backgroundColor: theme.palette.background.default,
+          justifyItems: "center",
           minHeight: '100vh',
         }}
       >
-        <Stack sx={{ margin: 10, textAlign: 'center' }}>
+        <Stack sx={{ margin: 10, textAlign: 'center', justifyItems: "center",  }}>
           <Typography variant="h1">Keep your code here!</Typography>
           <Typography variant="h4">
             With us you will never forget about what you once wrote

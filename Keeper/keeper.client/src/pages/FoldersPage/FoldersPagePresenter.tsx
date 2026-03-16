@@ -20,6 +20,7 @@ const FoldersPagePresenter: React.FC<FoldersPagePresenterProps> = ({ folders }) 
     <Box
       sx={{
         width: '100%',
+        justifyItems: 'center',
         backgroundColor: theme.palette.background.default,
         minHeight: '100vh',
         marginTop: 10,
@@ -27,25 +28,23 @@ const FoldersPagePresenter: React.FC<FoldersPagePresenterProps> = ({ folders }) 
         py: 4,
       }}
     >
-      <Stack sx={{ paddingLeft: '100px' }}>
-        <PageBreadcrumbs crumbs={[{ label: 'Folders' }]} />
+      <PageBreadcrumbs crumbs={[{ label: 'Folders' }]} />
 
-        <Box sx={{ maxWidth: '1600px', width: '100%' }}>
-          <Grid container spacing={5} padding={4} justifyContent="center">
-            {folders.map((folder, index) => (
-              <Grid size={{ xs: 12, xl: 6 }} key={folder.id}>
-                <FolderComponent
-                  number={index + 1}
-                  title={folder.title}
-                  createdAt={folder.createdAt}
-                  languages={folderLanguages[folder.id] ?? {}}
-                  onClick={() => navigate(ROUTES.getCodeSnippets(folder.id))}
-                />
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
-      </Stack>
+      <Box sx={{ maxWidth: '1600px', width: '100%' }}>
+        <Grid container spacing={5} padding={4} justifyContent="center">
+          {folders.map((folder, index) => (
+            <Grid size={{ xs: 12, xl: 6 }} key={folder.id}>
+              <FolderComponent
+                number={index + 1}
+                title={folder.title}
+                createdAt={folder.createdAt}
+                languages={folderLanguages[folder.id] ?? {}}
+                onClick={() => navigate(ROUTES.getCodeSnippets(folder.id))}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
     </Box>
   );
 };

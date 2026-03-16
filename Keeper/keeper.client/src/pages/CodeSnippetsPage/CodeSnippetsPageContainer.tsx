@@ -34,7 +34,13 @@ const CodeSnippetsPageContainer: React.FC = () => {
     handleGetFolder();
   }, [folderId]);
 
-  return <CodeSnippetsPagePresenter codeSnippets={codeSnippets} folderTitle={folderTitle} />;
+  return (
+    <CodeSnippetsPagePresenter
+      codeSnippets={codeSnippets}
+      folderId={folderId ?? ''}
+      folderTitle={folderTitle}
+    />
+  );
 };
 
 export default CodeSnippetsPageContainer;

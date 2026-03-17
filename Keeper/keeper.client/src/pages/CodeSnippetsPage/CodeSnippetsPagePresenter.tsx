@@ -5,6 +5,7 @@ import CodeSnippetPaperComponent from './components/CodeSnippetPaperComponent';
 import PageBreadcrumbs from '../common/PageBreadcrumbsComponent';
 import { ROUTES } from '../../routes';
 import { useNavigate } from 'react-router-dom';
+import { baseBoxSx } from '../../styles/baseBoxSx';
 
 interface CodeSnippetsPagePresenterProps {
   folderId: string;
@@ -19,17 +20,7 @@ const CodeSnippetsPagePresenter: React.FC<CodeSnippetsPagePresenterProps> = ({
 }) => {
   const navigate = useNavigate();
   return (
-    <Box
-      sx={{
-        width: '100%',
-        justifyItems: 'center',
-        backgroundColor: theme.palette.background.default,
-        minHeight: '100vh',
-        marginTop: 10,
-        px: 10,
-        py: 4,
-      }}
-    >
+    <Box sx={baseBoxSx}>
       <PageBreadcrumbs
         crumbs={[{ label: 'Folders', href: ROUTES.FOLDERS }, { label: folderTitle }]}
       />

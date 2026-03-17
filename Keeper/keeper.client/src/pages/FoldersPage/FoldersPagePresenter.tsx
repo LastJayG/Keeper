@@ -6,6 +6,7 @@ import { useFolderLanguages } from '../../hooks/useFolderLanguages';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../routes';
 import PageBreadcrumbs from '../common/PageBreadcrumbsComponent';
+import { baseBoxSx } from '../../styles/baseBoxSx';
 
 interface FoldersPagePresenterProps {
   folders: FolderDto[];
@@ -17,17 +18,7 @@ const FoldersPagePresenter: React.FC<FoldersPagePresenterProps> = ({ folders }) 
   const navigate = useNavigate();
 
   return (
-    <Box
-      sx={{
-        width: '100%',
-        justifyItems: 'center',
-        backgroundColor: theme.palette.background.default,
-        minHeight: '100vh',
-        marginTop: 10,
-        px: 10,
-        py: 4,
-      }}
-    >
+    <Box sx={baseBoxSx}>
       <PageBreadcrumbs crumbs={[{ label: 'Folders' }]} />
 
       <Box sx={{ maxWidth: '1600px', width: '100%' }}>

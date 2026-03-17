@@ -1,5 +1,9 @@
 import { Box, Stack, Typography, Chip } from '@mui/material';
-import { paperContainerSx, paperSx, paperChipSx } from '../../../styles/paperContainerSx';
+import { paperContainerSx, paperSx, paperChipSx } from '../../../styles/paper/paperContainerSx';
+import {
+  typographyPaperMediumCaption,
+  typographyPaperSmallCaption,
+} from '../../../styles/typography/typographyCaptions';
 
 interface CodeSnippetPaperProps {
   number: number;
@@ -21,30 +25,14 @@ const CodeSnippetPaperComponent: React.FC<CodeSnippetPaperProps> = ({
       <Box sx={paperSx}>
         <Stack direction="row" alignItems="flex-start" justifyContent="space-between" gap={2}>
           <Stack spacing={0.5} sx={{ minWidth: 0 }}>
-            <Typography
-              variant="caption"
-              sx={{ color: 'rgba(100, 80, 60, 0.5)', fontFamily: 'monospace', fontSize: '11px' }}
-            >
+            <Typography variant="caption" sx={typographyPaperSmallCaption}>
               #{number}
             </Typography>
-            <Typography
-              variant="h6"
-              sx={{
-                color: '#2c1f0e',
-                fontWeight: 600,
-                fontFamily: "'Georgia', serif",
-                lineHeight: 1.3,
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                whiteSpace: 'nowrap',
-              }}
-            >
+            <Typography variant="h6" sx={typographyPaperMediumCaption}>
               {title}
             </Typography>
-            <Typography
-              variant="caption"
-              sx={{ color: 'rgba(80, 60, 40, 0.6)', fontFamily: 'monospace', fontSize: '11px' }}
-            >
+
+            <Typography variant="caption" sx={typographyPaperSmallCaption}>
               {new Date(createdAt).toLocaleDateString()}
             </Typography>
           </Stack>

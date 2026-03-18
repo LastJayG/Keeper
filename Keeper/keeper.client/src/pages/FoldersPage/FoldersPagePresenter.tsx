@@ -1,12 +1,12 @@
 import { Box, Grid, Stack } from '@mui/material';
-import { theme } from '../../theme';
 import { FolderDto } from '../../models/folder';
 import FolderComponent from './components/FolderComponent';
 import { useFolderLanguages } from '../../hooks/useFolderLanguages';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../routes';
 import PageBreadcrumbs from '../common/PageBreadcrumbsComponent';
-import { baseBoxSx } from '../../styles/baseBoxSx';
+import { baseBoxSx } from '../../styles/box/baseBoxSx';
+import AddFolderComponent from './components/AddFolderComponent';
 
 interface FoldersPagePresenterProps {
   folders: FolderDto[];
@@ -22,9 +22,9 @@ const FoldersPagePresenter: React.FC<FoldersPagePresenterProps> = ({ folders }) 
       <PageBreadcrumbs crumbs={[{ label: 'Folders' }]} />
 
       <Box sx={{ maxWidth: '1600px', width: '100%' }}>
-        <Grid container spacing={5} padding={4} justifyContent="center">
+        <Grid container spacing={6} padding={4} justifyContent="center">
           {folders.map((folder, index) => (
-            <Grid size={{ xs: 12, xl: 6 }} key={folder.id}>
+            <Grid size={{ xs: 10, xl: 5 }} key={folder.id} sx={{ justifyItems: 'center' }}>
               <FolderComponent
                 number={index + 1}
                 title={folder.title}
@@ -34,6 +34,7 @@ const FoldersPagePresenter: React.FC<FoldersPagePresenterProps> = ({ folders }) 
               />
             </Grid>
           ))}
+          <AddFolderComponent />
         </Grid>
       </Box>
     </Box>

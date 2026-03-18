@@ -5,7 +5,7 @@ import CodeSnippetPaperComponent from './components/CodeSnippetPaperComponent';
 import PageBreadcrumbs from '../common/PageBreadcrumbsComponent';
 import { ROUTES } from '../../routes';
 import { useNavigate } from 'react-router-dom';
-import { baseBoxSx } from '../../styles/baseBoxSx';
+import { baseBoxSx } from '../../styles/box/baseBoxSx';
 
 interface CodeSnippetsPagePresenterProps {
   folderId: string;

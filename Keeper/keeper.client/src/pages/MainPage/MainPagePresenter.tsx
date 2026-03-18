@@ -1,8 +1,7 @@
 import React from 'react';
 
 import { Box, Stack, Typography } from '@mui/material';
-import { theme } from '../../theme';
-import { baseBoxSx } from '../../styles/baseBoxSx';
+import { baseBoxSx } from '../../styles/box/baseBoxSx';
 
 const MainPagePresenter: React.FC = () => {
   return (

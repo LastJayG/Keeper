@@ -3,7 +3,7 @@ import { CodeSnippetDto } from '../../models/codeSnippet';
 import PageBreadcrumbs from '../common/PageBreadcrumbsComponent';
 import { ROUTES } from '../../routes';
 import { paperDetailSx } from '../../styles/paper/paperDetailSx';
-import { baseBoxSx } from '../../styles/baseBoxSx';
+import { baseBoxSx } from '../../styles/box/baseBoxSx';
 import PaperDetailsComponent from './common/PaperDetailsComponent';
 
 interface CodeSnippetDetailsPagePresenterProps {

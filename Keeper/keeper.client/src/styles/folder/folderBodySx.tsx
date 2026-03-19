@@ -18,5 +18,6 @@ export const folderBodySx: SxProps<Theme> = {
     backgroundColor: theme.palette.background.paper,
     transform: 'translateY(-3px)',
     boxShadow: '0px 8px 20px rgba(0,0,0,0.4)',
+    cursor: 'pointer',
   },
 };

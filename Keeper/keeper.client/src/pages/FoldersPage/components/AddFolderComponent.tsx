@@ -1,17 +1,20 @@
 import { Box, CardContent, Stack, Typography } from '@mui/material';
-import { typographyFolderSmallCaption } from '../../../styles/typography/typographyCaptions';
 import { addFolderTopSx } from '../../../styles/folder/addFolderTopSx';
 import { addFolderBodySx } from '../../../styles/folder/addFolderBodySx';
 
-const AddFolderComponent: React.FC = () => {
+interface AddFolderComponentProps {
+  onClick: () => void;
+}
+
+const AddFolderComponent: React.FC<AddFolderComponentProps> = ({ onClick }) => {
   return (
-    <Box sx={addFolderTopSx}>
+    <Box sx={addFolderTopSx} onClick={onClick}>
       <Box sx={addFolderBodySx}>
-        <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ pr: 2 }}>
-          <Stack direction="column">
+        <Stack direction="row" justifyContent='center'>
+          <Stack direction='column' justifyContent='center'>
             <CardContent>
-              <Typography variant="h5" sx={typographyFolderSmallCaption}>
-                Add folder
+              <Typography variant="h4">
+                + Add folder...
               </Typography>
             </CardContent>
           </Stack>

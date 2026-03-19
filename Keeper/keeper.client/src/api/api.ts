@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FolderDto } from '../models/folder';
+import { CreateFolderDto, FolderDto } from '../models/folder';
 import { CodeSnippetDto, CodeSnippetShortDto } from '../models/codeSnippet';
 const API_URL = 'https://localhost:7254';
 
@@ -57,4 +57,13 @@ export const api = {
       throw error;
     }
   },
+
+  async postFolder(folder: CreateFolderDto) {
+    try {
+      const response = await apiClient.post<FolderDto>(`api/Folder`, folder);
+      return response.data;
+    } catch (error: any) {
+      throw error;
+    }
+  }
 };

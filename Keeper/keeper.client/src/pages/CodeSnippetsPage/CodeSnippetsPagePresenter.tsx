@@ -1,11 +1,11 @@
-import { Box, Grid } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import { CodeSnippetShortDto } from '../../models/codeSnippet';
-import { theme } from '../../theme';
 import CodeSnippetPaperComponent from './components/CodeSnippetPaperComponent';
 import PageBreadcrumbs from '../common/PageBreadcrumbsComponent';
 import { ROUTES } from '../../routes';
 import { useNavigate } from 'react-router-dom';
 import { baseBoxSx } from '../../styles/box/baseBoxSx';
+import { typographyPaperMediumCaption } from '../../styles/typography/typographyCaptions';
 
 interface CodeSnippetsPagePresenterProps {
   folderId: string;
@@ -24,6 +24,9 @@ const CodeSnippetsPagePresenter: React.FC<CodeSnippetsPagePresenterProps> = ({
       <PageBreadcrumbs
         crumbs={[{ label: 'Folders', href: ROUTES.FOLDERS }, { label: folderTitle }]}
       />
+      {(codeSnippets.length == 0) ? (
+        <Typography variant="h6" sx={typographyPaperMediumCaption}>There are no code snippets yet...</Typography>
+      ) : (
       <Box sx={{ maxWidth: '1600px', width: '100%' }}>
         <Grid container spacing={5} padding={4} justifyItems="center">
           {codeSnippets.map((codeSnippet, index) => (
@@ -42,7 +45,8 @@ const CodeSnippetsPagePresenter: React.FC<CodeSnippetsPagePresenterProps> = ({
             </Grid>
           ))}
         </Grid>
-      </Box>
+      </Box>)
+      };
     </Box>
   );
 };

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { api } from '../../api/api';
-import { FolderDto } from '../../models/folder';
+import { CreateFolderDto, FolderDto } from '../../models/folder';
 import FoldersPagePresenter from './FoldersPagePresenter';
 import GradientCircularProgress from '../common/GradientCircularProgress';
 
@@ -18,6 +18,15 @@ const FoldersPageContainer: React.FC = () => {
     }
   };
 
+  const handleCreateFolder = async (folder: CreateFolderDto) => {
+    try {
+      await api.postFolder(folder);
+      await handleGetFolders();
+    } catch (err) {
+      console.error('Error creating folder:', err);
+    }
+  };
+
   useEffect(() => {
     handleGetFolders();
   }, []);
@@ -27,7 +36,7 @@ const FoldersPageContainer: React.FC = () => {
       {isLoading ? (
         <GradientCircularProgress isVisible={isLoading} />
       ) : (
-        <FoldersPagePresenter folders={folders} handleGetFolders={handleGetFolders} />
+        <FoldersPagePresenter folders={folders} handleGetFolders={handleGetFolders}  handleCreateFolder={handleCreateFolder}/>
       )}
     </>
   );

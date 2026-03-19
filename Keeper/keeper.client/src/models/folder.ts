@@ -4,3 +4,7 @@ export interface FolderDto {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface CreateFolderDto {
+  title: string;
+}

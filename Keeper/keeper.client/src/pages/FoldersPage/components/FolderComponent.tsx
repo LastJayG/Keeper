@@ -1,6 +1,10 @@
-import { Box, Card, CardContent, Stack, Typography } from '@mui/material';
-import { pieArcLabelClasses, PieChart } from '@mui/x-charts/PieChart';
-import { chartColors, theme } from '../../../theme';
+import { Box, CardContent, Stack, Typography } from '@mui/material';
+import { PieChart } from '@mui/x-charts/PieChart';
+import { chartColors } from '../../../theme';
+import { folderTopSx } from '../../../styles/folder/folderTopSx';
+import { folderBodySx } from '../../../styles/folder/folderBodySx';
+import { pieChartSx } from '../../../styles/pieChartSx';
+import { typographyFolderSmallCaption } from '../../../styles/typography/typographyCaptions';
 
 interface FolderProps {
   number: number;
@@ -25,51 +29,16 @@ const FolderComponent: React.FC<FolderProps> = ({
   }));
 
   return (
-    <Box
-      onClick={onClick}
-      sx={{
-        position: 'relative',
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          top: '-20px',
-          left: '0px',
-          width: '130px',
-          height: '22px',
-          backgroundColor: theme.palette.background.paper,
-          borderRadius: '8px 8px 0 0',
-          zIndex: 1,
-        },
-      }}
-    >
-      <Box
-        sx={{
-          position: 'relative',
-          zIndex: 2,
-          backgroundColor: theme.palette.background.paper,
-          borderRadius: '0 8px 8px 8px',
-          boxShadow: '0px 4px 12px rgba(0,0,0,0.3)',
-          transition: 'all 0.2s ease',
-          height: '250px',
-          width: '100%',
-          padding: 2,
-          '&:hover': {
-            backgroundColor: theme.palette.background.paper,
-            transform: 'translateY(-3px)',
-            boxShadow: '0px 8px 20px rgba(0,0,0,0.4)',
-          },
-        }}
-      >
-        <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ pr: 2 }}>
+    <Box onClick={onClick} sx={folderTopSx}>
+      <Box sx={folderBodySx}>
+        <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ pr: 3 }}>
           <Stack direction="column">
             <CardContent>
-              <Typography variant="h5" color={theme.palette.text.primary}>
+              <Typography variant="h5" sx={typographyFolderSmallCaption}>
                 {number}
               </Typography>
-              <Typography variant="h4" color={theme.palette.text.primary}>
-                {title}
-              </Typography>
-              <Typography variant="h5" color={theme.palette.text.primary}>
+              <Typography variant="h4">{title}</Typography>
+              <Typography variant="h5" sx={typographyFolderSmallCaption}>
                 {new Date(createdAt).toLocaleDateString()}
               </Typography>
             </CardContent>
@@ -78,7 +47,7 @@ const FolderComponent: React.FC<FolderProps> = ({
           <PieChart
             series={[
               {
-                data: pieData.length > 0 ? pieData : [{ id: 0, value: 1, label: 'Нет данных' }],
+                data: pieData.length > 0 ? pieData : [{ id: 0, value: 0 }],
                 arcLabel: (item) => `${item.value}%`,
                 arcLabelMinAngle: 20,
               },
@@ -86,16 +55,7 @@ const FolderComponent: React.FC<FolderProps> = ({
             width={200}
             height={200}
             skipAnimation
-            sx={{
-              ['& .MuiChartsLegend-label']: {
-                fontSize: '30px !important',
-              },
-              [`& .${pieArcLabelClasses.root}`]: {
-                fill: theme.palette.text.secondary,
-                fontWeight: 'bold',
-                fontSize: '20px',
-              },
-            }}
+            sx={pieChartSx}
           />
         </Stack>
       </Box>

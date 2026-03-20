@@ -1,16 +1,10 @@
 import { Breadcrumbs, Link, Typography } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
+import { useBreadcrumbStore } from '../../stores/useBreadcrumbStore';
 
-interface Crumb {
-  label: string;
-  href?: string;
-}
-
-interface Props {
-  crumbs: Crumb[];
-}
-
-export default function PageBreadcrumbs({ crumbs }: Props) {
+export default function PageBreadcrumbs() {
+  const crumbs = useBreadcrumbStore((state) => state.crumbs)
+  
   return (
     <Breadcrumbs
       aria-label="breadcrumb"

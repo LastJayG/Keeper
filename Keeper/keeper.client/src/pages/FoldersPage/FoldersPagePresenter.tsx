@@ -1,4 +1,4 @@
-import { Box, Grid, Stack, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import { CreateFolderDto, FolderDto } from '../../models/folder';
 import FolderComponent from './components/FolderComponent';
 import { useFolderLanguages } from '../../hooks/useFolderLanguages';
@@ -10,6 +10,7 @@ import AddFolderComponent from './components/AddFolderComponent';
 import { useState } from 'react';
 import AddFolderForm from './components/AddFolderForm';
 import { typographyPaperMediumCaption } from '../../styles/typography/typographyCaptions';
+import { useBreadcrumbStore } from '../../stores/useBreadcrumbStore';
 
 interface FoldersPagePresenterProps {
   folders: FolderDto[];
@@ -22,11 +23,12 @@ const FoldersPagePresenter: React.FC<FoldersPagePresenterProps> = ({
 }) => {
   const { folderLanguages } = useFolderLanguages(folders);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const setSelectedFolder = useBreadcrumbStore((state) => state.setSelectedFolder)
   const navigate = useNavigate();
 
   return (
     <Box sx={baseBoxSx}>
-      <PageBreadcrumbs crumbs={[{ label: 'Folders' }]} />
+      <PageBreadcrumbs/>
       {folders.length == 0 ? (
         <>
           <Typography variant="h6" sx={typographyPaperMediumCaption}>
@@ -52,7 +54,10 @@ const FoldersPagePresenter: React.FC<FoldersPagePresenterProps> = ({
                   title={folder.title}
                   createdAt={folder.createdAt}
                   languages={folderLanguages[folder.id] ?? {}}
-                  onClick={() => navigate(ROUTES.getCodeSnippets(folder.id))}
+                  onClick={() => {
+                    setSelectedFolder(folder)
+                    navigate(ROUTES.getCodeSnippets(folder.id))
+                  }}
                 />
               </Grid>
             ))}

@@ -4,18 +4,26 @@ import CodeSnippetsPagePresenter from './CodeSnippetsPagePresenter';
 import { CodeSnippetShortDto, CreateCodeSnippetDto } from '../../models/codeSnippet';
 import { useParams } from 'react-router-dom';
 import GradientCircularProgress from '../common/GradientCircularProgress';
+import { useBreadcrumbStore } from '../../stores/useBreadcrumbStore';
+import { ROUTES } from '../../routes';
 
 const CodeSnippetsPageContainer: React.FC = () => {
   const { folderId } = useParams<{ folderId: string }>();
   const [codeSnippets, setCodeSnippets] = useState<CodeSnippetShortDto[]>([]);
   const [folderTitle, setFolderTitle] = useState<string>('');
   const [isLoading, setIsLoading] = useState(true);
+  const setCrumbs = useBreadcrumbStore((state) => state.setCrumbs);
+  const selectedFolder = useBreadcrumbStore((state) => state.selectedFolder)
 
   const handleGetCodeSnippets = async () => {
     if (!folderId) return;
     try {
       const data = await api.getCodeSnippetsByFolderId(folderId);
       setCodeSnippets(data);
+      setCrumbs([
+              { label: 'Folders', href: ROUTES.FOLDERS },
+              { label: selectedFolder?.title ?? 'Folder', href: ROUTES.getCodeSnippets(folderId!) },
+            ]);
     } catch (err) {
       console.error('Error fetching code snippets:', err);
     } finally {

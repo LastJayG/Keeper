@@ -28,9 +28,7 @@ const CodeSnippetsPagePresenter: React.FC<CodeSnippetsPagePresenterProps> = ({
 
   return (
     <Box sx={baseBoxSx}>
-      <PageBreadcrumbs
-        crumbs={[{ label: 'Folders', href: ROUTES.FOLDERS }, { label: folderTitle }]}
-      />
+      <PageBreadcrumbs/>
       {codeSnippets.length == 0 ? (
         <>
           <Typography variant="h6" sx={{ ...typographyPaperMediumCaption, pb: 2 }}>
@@ -60,6 +58,7 @@ const CodeSnippetsPagePresenter: React.FC<CodeSnippetsPagePresenterProps> = ({
                   createdAt={codeSnippet.createdAt}
                   language={codeSnippet.programmingLanguage}
                   onClick={() =>
+                    
                     navigate(ROUTES.getCodeSnippet(folderId, codeSnippet.id), {
                       state: { folderTitle, folderId },
                     })

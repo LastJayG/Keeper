@@ -3,10 +3,13 @@ import { api } from '../../api/api';
 import { CreateFolderDto, FolderDto } from '../../models/folder';
 import FoldersPagePresenter from './FoldersPagePresenter';
 import GradientCircularProgress from '../common/GradientCircularProgress';
+import { useBreadcrumbStore } from '../../stores/useBreadcrumbStore';
 
 const FoldersPageContainer: React.FC = () => {
   const [folders, setFolders] = useState<FolderDto[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const setCrumbs = useBreadcrumbStore((state) => state.setCrumbs);
+
   const handleGetFolders = async () => {
     try {
       const data = await api.getFolders();
@@ -29,6 +32,7 @@ const FoldersPageContainer: React.FC = () => {
 
   useEffect(() => {
     handleGetFolders();
+    setCrumbs([{ label: 'Folders' }]);
   }, []);
 
   return (

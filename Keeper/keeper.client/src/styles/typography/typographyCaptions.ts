@@ -3,13 +3,13 @@ import { SxProps } from '@mui/material';
 import { theme } from '../../theme';
 
 export const typographyPaperSmallCaption: SxProps<Theme> = {
-  color: 'rgba(100, 80, 60, 0.5)',
+  color: theme.customComponents.paper.caption.small,
   fontFamily: 'monospace',
   fontSize: '14px',
 };
 
 export const typographyPaperMediumCaption: SxProps<Theme> = {
-  color: '#2c1f0e',
+  color:  theme.customComponents.paper.caption.medium,
   fontWeight: 600,
   fontFamily: "'Georgia', serif",
   lineHeight: 1.3,
@@ -19,7 +19,7 @@ export const typographyPaperMediumCaption: SxProps<Theme> = {
 };
 
 export const typographyPaperBasicCaption: SxProps<Theme> = {
-  color: '#2c1f0e',
+  color:  theme.customComponents.paper.caption.basic,
   fontFamily: "'Georgia', serif",
   lineHeight: 1.3,
   overflow: 'hidden',

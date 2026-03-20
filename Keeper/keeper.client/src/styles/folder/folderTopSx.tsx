@@ -11,7 +11,7 @@ export const folderTopSx: SxProps<Theme> = {
     left: '0px',
     width: '130px',
     height: '22px',
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: theme.customComponents.folder.background,
     borderRadius: '8px 8px 0 0',
     zIndex: 1,
   },

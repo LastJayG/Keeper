@@ -1,4 +1,5 @@
 import { SxProps, Theme } from '@mui/material';
+import { theme } from '../../theme';
 
 export const paperContainerSx: SxProps<Theme> = {
   position: 'relative',
@@ -10,7 +11,7 @@ export const paperContainerSx: SxProps<Theme> = {
     left: '4px',
     right: '-4px',
     borderRadius: '2px',
-    backgroundColor: '#c8c0b0',
+    backgroundColor: theme.customComponents.paper.container.backgroundLight,
   },
   '&::before': {
     top: '4px',
@@ -21,17 +22,17 @@ export const paperContainerSx: SxProps<Theme> = {
     top: '8px',
     bottom: '-8px',
     right: '-8px',
-    backgroundColor: '#b8b0a0',
+    backgroundColor: theme.customComponents.paper.container.backgroundDark,
     zIndex: -1,
   },
 };
 
 export const paperChipSx: SxProps<Theme> = {
   flexShrink: 0,
-  backgroundColor: 'rgba(180, 140, 80, 0.2)',
-  color: '#5c3d1e',
+  backgroundColor: theme.customComponents.paper.chip.background,
+  color: theme.customComponents.paper.chip.text,
   fontFamily: 'monospace',
-  fontSize: '11px',
-  border: '1px solid rgba(180, 140, 80, 0.4)',
+  fontSize: '12px',
+  border: `1px solid ${theme.customComponents.paper.chip.background}`,
   borderRadius: '4px',
 };

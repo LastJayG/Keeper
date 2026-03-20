@@ -1,5 +1,6 @@
 import { Theme } from "@emotion/react";
 import { SxProps } from "@mui/material";
+import { theme } from "../../theme";
 
 export const addCodeSnippetComponentSx: SxProps<Theme> = {
   position: 'relative',
@@ -8,7 +9,7 @@ export const addCodeSnippetComponentSx: SxProps<Theme> = {
   alignContent: 'center',
   justifyItems: 'center',
   zIndex: 1,
-  backgroundColor: '#f5f0e8',
+  backgroundColor: theme.customComponents.paper.background,
   borderRadius: '2px',
   padding: '24px 28px',
   boxShadow: '0px 2px 8px rgba(0,0,0,0.25), inset 0 0 40px rgba(0,0,0,0.03)',
@@ -16,8 +17,8 @@ export const addCodeSnippetComponentSx: SxProps<Theme> = {
     repeating-linear-gradient(
       transparent,
       transparent 27px,
-      rgba(180, 160, 120, 0.15) 27px,
-      rgba(180, 160, 120, 0.15) 28px
+      ${theme.customComponents.paper.strokes} 27px,
+      ${theme.customComponents.paper.strokes} 28px
     )
   `,
   transition: 'transform 0.2s ease, box-shadow 0.2s ease',
@@ -25,5 +26,5 @@ export const addCodeSnippetComponentSx: SxProps<Theme> = {
     transform: 'translateY(-3px) rotate(-0.3deg)',
     boxShadow: '0px 8px 20px rgba(0,0,0,0.3), inset 0 0 40px rgba(0,0,0,0.03)',
   },
-  borderLeft: '3px solid rgba(200, 100, 100, 0.3)',
+  borderLeft: `3px solid ${theme.customComponents.paper.leftBorder}`,
 };

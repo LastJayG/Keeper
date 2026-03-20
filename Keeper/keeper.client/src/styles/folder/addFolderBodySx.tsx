@@ -7,7 +7,7 @@ export const addFolderBodySx: SxProps<Theme> = {
   zIndex: 2,
   borderRadius: '0 8px 8px 8px',
   borderColor: theme.palette.background.paper,
-  backgroundColor: alpha(theme.palette.background.paper, 0.5),
+  backgroundColor: alpha(theme.customComponents.folder.background, 0.5),
   borderStyle: 'dashed',
   boxShadow: '0px 4px 12px rgba(0,0,0,0.3)',
   transition: 'all 0.2s ease',

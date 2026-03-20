@@ -8,7 +8,6 @@ export const theme = createTheme({
       dark: '#383b53',
       contrastText: '#f4faff',
     },
-
     secondary: {
       main: '#b084cc',
       light: '#b7adcf',
@@ -17,7 +16,7 @@ export const theme = createTheme({
     },
     background: {
       default: '#f4faff',
-      paper: '#FFE9A2',
+      paper: '#f5f0e8',
     },
     text: {
       primary: '#222e50',
@@ -31,10 +30,95 @@ export const theme = createTheme({
       disabledBackground: 'rgba(0, 0, 0, 0.12)',
     },
   },
+
+  customComponents: {
+    folder: {
+      background: '#FFE9A2',
+    },
+    paper: {
+      background: '#f5f0e8',
+      strokes: 'rgba(180, 160, 120, 0.15)',
+      leftBorder: 'rgba(200, 100, 100, 0.3)',
+      shadow: '',
+      chip: {
+        background: 'rgba(180, 140, 80, 0.2)',
+        border: 'rgba(180, 140, 80, 0.4)',
+        text: '#5c3d1e',
+      },
+      container: {
+          backgroundLight: '#c8c0b0',
+          backgroundDark:  '#b8b0a0',
+      },
+      caption: {
+          small: 'rgba(100, 80, 60, 0.5)',
+          medium: '#2c1f0e',
+          basic: '#2c1f0e',
+        }
+    }
+  },
+
   typography: {
     fontFamily: '"Handjet", sans-serif',
   },
 });
+
+declare module '@mui/material/styles' {
+  interface ThemeOptions {
+    customComponents: {
+      folder: {
+        background: string,
+      },
+      paper: {
+        background: string,
+        strokes: string,
+        leftBorder: string,
+        shadow: string,
+        chip: {
+          background: string,
+          border: string,
+          text: string,
+        },
+        container: {
+          backgroundLight: string,
+          backgroundDark: string,
+        },
+        caption: {
+          small: string,
+          medium: string,
+          basic: string,
+        }
+      },
+    };
+  }
+
+  interface Theme {
+    customComponents: {
+      folder: {
+        background: string,
+      },
+      paper: {
+        background: string,
+        strokes: string,
+        leftBorder: string,
+        shadow: string,
+        chip: {
+          background: string,
+          border: string,
+          text: string,
+        },
+        container: {
+          backgroundLight: string,
+          backgroundDark: string,
+        },
+        caption: {
+          small: string,
+          medium: string,
+          basic: string,
+        }
+      },
+    };
+  }
+}
 
 export const chartColors = [
   '#177E89',

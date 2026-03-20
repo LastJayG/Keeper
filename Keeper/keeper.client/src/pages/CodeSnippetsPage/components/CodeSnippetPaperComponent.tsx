@@ -1,9 +1,10 @@
 import { Box, Stack, Typography, Chip } from '@mui/material';
-import { paperContainerSx, paperSx, paperChipSx } from '../../../styles/paper/paperContainerSx';
+import { paperContainerSx, paperChipSx } from '../../../styles/paper/paperContainerSx';
 import {
   typographyPaperMediumCaption,
   typographyPaperSmallCaption,
 } from '../../../styles/typography/typographyCaptions';
+import { paperSx } from '../../../styles/paper/paperSx';
 
 interface CodeSnippetPaperProps {
   number: number;
@@ -21,7 +22,7 @@ const CodeSnippetPaperComponent: React.FC<CodeSnippetPaperProps> = ({
   onClick,
 }) => {
   return (
-    <Box onClick={onClick} sx={{ ...paperContainerSx, cursor: onClick ? 'pointer' : 'default' }}>
+    <Box onClick={onClick} sx={paperContainerSx}>
       <Box sx={paperSx}>
         <Stack direction="row" alignItems="flex-start" justifyContent="space-between" gap={2}>
           <Stack spacing={0.5} sx={{ minWidth: 0 }}>

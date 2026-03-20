@@ -13,3 +13,11 @@ export interface CodeSnippetShortDto {
   programmingLanguage: string;
   createdAt: string;
 }
+
+export interface CreateCodeSnippetDto {
+  title: string;
+  description: string;
+  programmingLanguage: string;
+  code: string;
+  folderId: string;
+}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { api } from '../../api/api';
 import CodeSnippetsPagePresenter from './CodeSnippetsPagePresenter';
-import { CodeSnippetShortDto } from '../../models/codeSnippet';
+import { CodeSnippetShortDto, CreateCodeSnippetDto } from '../../models/codeSnippet';
 import { useParams } from 'react-router-dom';
 import GradientCircularProgress from '../common/GradientCircularProgress';
 
@@ -22,6 +22,15 @@ const CodeSnippetsPageContainer: React.FC = () => {
       setIsLoading(false);
     }
   };
+
+  const handleCreateCodeSnippet = async (codeSnippet: CreateCodeSnippetDto) => {
+      try {
+        await api.postCodeSnippet(codeSnippet);
+        await handleGetCodeSnippets();
+      } catch (err) {
+        console.error('Error creating code snippet:', err);
+      }
+    };
 
   const handleGetFolder = async () => {
     if (!folderId) return;
@@ -47,6 +56,7 @@ const CodeSnippetsPageContainer: React.FC = () => {
           codeSnippets={codeSnippets}
           folderId={folderId ?? ''}
           folderTitle={folderTitle}
+          handleCreateCodeSnippet={handleCreateCodeSnippet}
         />
       )}{' '}
     </>

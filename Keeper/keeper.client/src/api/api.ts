@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { CreateFolderDto, FolderDto } from '../models/folder';
-import { CodeSnippetDto, CodeSnippetShortDto } from '../models/codeSnippet';
+import { CodeSnippetDto, CodeSnippetShortDto, CreateCodeSnippetDto } from '../models/codeSnippet';
 const API_URL = 'https://localhost:7254';
 
 const apiClient = axios.create({
@@ -49,6 +49,15 @@ export const api = {
     }
   },
 
+   async postCodeSnippet(codeSnippet: CreateCodeSnippetDto) {
+    try {
+      const response = await apiClient.post<CreateCodeSnippetDto>(`api/CodeSnippet`, codeSnippet);
+      return response.data;
+    } catch (error: any) {
+      throw error;
+    }
+  },
+
   async getFolderLanguages(id: string) {
     try {
       const response = await apiClient.get<Record<string, number>>(`api/Folder/${id}/languages`);
@@ -65,5 +74,5 @@ export const api = {
     } catch (error: any) {
       throw error;
     }
-  }
+  },
 };

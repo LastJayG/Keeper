@@ -10,12 +10,10 @@ const AddFolderComponent: React.FC<AddFolderComponentProps> = ({ onClick }) => {
   return (
     <Box sx={addFolderTopSx} onClick={onClick}>
       <Box sx={addFolderBodySx}>
-        <Stack direction="row" justifyContent='center'>
-          <Stack direction='column' justifyContent='center'>
+        <Stack direction="row" justifyContent="center">
+          <Stack direction="column" justifyContent="center">
             <CardContent>
-              <Typography variant="h4">
-                + Add folder...
-              </Typography>
+              <Typography variant="h4">+ Add folder...</Typography>
             </CardContent>
           </Stack>
         </Stack>

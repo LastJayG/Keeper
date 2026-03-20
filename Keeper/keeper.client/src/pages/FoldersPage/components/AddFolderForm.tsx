@@ -10,7 +10,6 @@ import { CreateFolderDto } from '../../../models/folder';
 import { dialogContentTextSx } from '../../../styles/dialog/dialogContentTextSx';
 import { addFolderFormSx } from '../../../styles/folder/addFolderFormSx';
 import { textFieldSx } from '../../../styles/textFieldSx';
-import { theme } from '../../../theme';
 
 interface AddFolderFormProps {
   open: boolean;
@@ -29,25 +28,29 @@ export default function AddFolderForm({ open, onClose, onSubmit }: AddFolderForm
 
   return (
     <Dialog sx={addFolderFormSx} open={open} onClose={onClose}>
-      <DialogTitle variant='h4'>+ Add Folder...</DialogTitle>
+      <DialogTitle variant="h4">+ Add Folder...</DialogTitle>
       <DialogContent>
-        <DialogContentText variant='h6' sx={dialogContentTextSx}>Please enter a title for your folder.</DialogContentText>
+        <DialogContentText variant="h6" sx={dialogContentTextSx}>
+          Please enter a title for your folder.
+        </DialogContentText>
         <form onSubmit={handleSubmit} id="add-folder-form">
-          <TextField sx={textFieldSx}
+          <TextField
+            sx={textFieldSx}
             autoFocus
             required
             margin="dense"
             name="title"
-            placeholder='Folder Title'
+            placeholder="Folder Title"
             fullWidth
-            variant="filled" 
-            
+            variant="filled"
           />
         </form>
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Cancel</Button>
-        <Button type="submit" form="add-folder-form">Add</Button>
+        <Button type="submit" form="add-folder-form">
+          Add
+        </Button>
       </DialogActions>
     </Dialog>
   );

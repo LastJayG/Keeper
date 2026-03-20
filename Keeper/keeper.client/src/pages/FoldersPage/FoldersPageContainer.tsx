@@ -36,7 +36,10 @@ const FoldersPageContainer: React.FC = () => {
       {isLoading ? (
         <GradientCircularProgress isVisible={isLoading} />
       ) : (
-        <FoldersPagePresenter folders={folders} handleGetFolders={handleGetFolders}  handleCreateFolder={handleCreateFolder}/>
+        <FoldersPagePresenter
+          folders={folders}
+          handleCreateFolder={handleCreateFolder}
+        />
       )}
     </>
   );

@@ -13,11 +13,13 @@ import { typographyPaperMediumCaption } from '../../styles/typography/typography
 
 interface FoldersPagePresenterProps {
   folders: FolderDto[];
-  handleGetFolders: () => void;
   handleCreateFolder: (folder: CreateFolderDto) => Promise<void>;
 }
 
-const FoldersPagePresenter: React.FC<FoldersPagePresenterProps> = ({ folders, handleCreateFolder }) => {
+const FoldersPagePresenter: React.FC<FoldersPagePresenterProps> = ({
+  folders,
+  handleCreateFolder,
+}) => {
   const { folderLanguages } = useFolderLanguages(folders);
   const [dialogOpen, setDialogOpen] = useState(false);
   const navigate = useNavigate();
@@ -25,30 +27,44 @@ const FoldersPagePresenter: React.FC<FoldersPagePresenterProps> = ({ folders, ha
   return (
     <Box sx={baseBoxSx}>
       <PageBreadcrumbs crumbs={[{ label: 'Folders' }]} />
-        {(folders.length == 0) ? (
-        <Typography variant="h6" sx={typographyPaperMediumCaption}>There are no folders yet...</Typography>
+      {folders.length == 0 ? (
+        <>
+          <Typography variant="h6" sx={typographyPaperMediumCaption}>
+            There are no folders yet...
+          </Typography>
+          <Grid container spacing={6} padding={4} justifyContent="center">
+            <AddFolderComponent onClick={() => setDialogOpen(true)} />
+            <AddFolderForm
+              open={dialogOpen}
+              onClose={() => setDialogOpen(false)}
+              onSubmit={handleCreateFolder}
+            />
+          </Grid>
+        </>
       ) : (
-      <Box sx={{ maxWidth: '1600px', width: '100%' }}>
-        <Grid container spacing={6} padding={4} justifyContent="center">
-          <AddFolderComponent onClick={() => setDialogOpen(true)} />
-          {folders.map((folder, index) => (
-            <Grid size={{ xs: 10, xl: 5 }} key={folder.id} sx={{ justifyItems: 'center' }}>
-              <FolderComponent
-                number={index + 1}
-                title={folder.title}
-                createdAt={folder.createdAt}
-                languages={folderLanguages[folder.id] ?? {}}
-                onClick={() => navigate(ROUTES.getCodeSnippets(folder.id))}
-              />
-            </Grid>
-          ))}
-          <AddFolderForm
-            open={dialogOpen}
-            onClose={() => setDialogOpen(false)}
-            onSubmit={handleCreateFolder}
-          />
-        </Grid>
-      </Box>)};
+        <Box sx={{ maxWidth: '1600px', width: '100%' }}>
+          <Grid container spacing={6} padding={4} justifyContent="center">
+            <AddFolderComponent onClick={() => setDialogOpen(true)} />
+            {folders.map((folder, index) => (
+              <Grid size={{ xs: 10, xl: 5 }} key={folder.id} sx={{ justifyItems: 'center' }}>
+                <FolderComponent
+                  number={index + 1}
+                  title={folder.title}
+                  createdAt={folder.createdAt}
+                  languages={folderLanguages[folder.id] ?? {}}
+                  onClick={() => navigate(ROUTES.getCodeSnippets(folder.id))}
+                />
+              </Grid>
+            ))}
+            <AddFolderForm
+              open={dialogOpen}
+              onClose={() => setDialogOpen(false)}
+              onSubmit={handleCreateFolder}
+            />
+          </Grid>
+        </Box>
+      )}
+      ;
     </Box>
   );
 };

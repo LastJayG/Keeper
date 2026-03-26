@@ -23,12 +23,12 @@ const FoldersPagePresenter: React.FC<FoldersPagePresenterProps> = ({
 }) => {
   const { folderLanguages } = useFolderLanguages(folders);
   const [dialogOpen, setDialogOpen] = useState(false);
-  const setSelectedFolder = useBreadcrumbStore((state) => state.setSelectedFolder)
+  const setSelectedFolder = useBreadcrumbStore((state) => state.setSelectedFolder);
   const navigate = useNavigate();
 
   return (
     <Box sx={baseBoxSx}>
-      <PageBreadcrumbs/>
+      <PageBreadcrumbs />
       {folders.length == 0 ? (
         <>
           <Typography variant="h6" sx={typographyPaperMediumCaption}>
@@ -55,8 +55,8 @@ const FoldersPagePresenter: React.FC<FoldersPagePresenterProps> = ({
                   createdAt={folder.createdAt}
                   languages={folderLanguages[folder.id] ?? {}}
                   onClick={() => {
-                    setSelectedFolder(folder)
-                    navigate(ROUTES.getCodeSnippets(folder.id))
+                    setSelectedFolder(folder);
+                    navigate(ROUTES.getCodeSnippets(folder.id));
                   }}
                 />
               </Grid>

@@ -10,6 +10,7 @@ import { CreateFolderDto } from '../../../models/folder';
 import { dialogContentTextSx } from '../../../styles/dialog/dialogContentTextSx';
 import { addFolderFormSx } from '../../../styles/folder/addFolderFormSx';
 import { textFieldSx } from '../../../styles/textFieldSx';
+import { dialogButtonSx } from '../../../styles/button/dialogButtonSx';
 
 interface AddFolderFormProps {
   open: boolean;
@@ -47,8 +48,8 @@ export default function AddFolderForm({ open, onClose, onSubmit }: AddFolderForm
         </form>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Cancel</Button>
-        <Button type="submit" form="add-folder-form">
+        <Button onClick={onClose} sx={dialogButtonSx}>Cancel</Button>
+        <Button type="submit" form="add-folder-form" sx={dialogButtonSx}>
           Add
         </Button>
       </DialogActions>

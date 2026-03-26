@@ -9,7 +9,7 @@ export const typographyPaperSmallCaption: SxProps<Theme> = {
 };
 
 export const typographyPaperMediumCaption: SxProps<Theme> = {
-  color:  theme.customComponents.paper.caption.medium,
+  color: theme.customComponents.paper.caption.medium,
   fontWeight: 600,
   fontFamily: "'Georgia', serif",
   lineHeight: 1.3,
@@ -19,7 +19,7 @@ export const typographyPaperMediumCaption: SxProps<Theme> = {
 };
 
 export const typographyPaperBasicCaption: SxProps<Theme> = {
-  color:  theme.customComponents.paper.caption.basic,
+  color: theme.customComponents.paper.caption.basic,
   fontFamily: "'Georgia', serif",
   lineHeight: 1.3,
   overflow: 'hidden',

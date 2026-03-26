@@ -13,7 +13,7 @@ const CodeSnippetsPageContainer: React.FC = () => {
   const [folderTitle, setFolderTitle] = useState<string>('');
   const [isLoading, setIsLoading] = useState(true);
   const setCrumbs = useBreadcrumbStore((state) => state.setCrumbs);
-  const selectedFolder = useBreadcrumbStore((state) => state.selectedFolder)
+  const selectedFolder = useBreadcrumbStore((state) => state.selectedFolder);
 
   const handleGetCodeSnippets = async () => {
     if (!folderId) return;
@@ -21,9 +21,9 @@ const CodeSnippetsPageContainer: React.FC = () => {
       const data = await api.getCodeSnippetsByFolderId(folderId);
       setCodeSnippets(data);
       setCrumbs([
-              { label: 'Folders', href: ROUTES.FOLDERS },
-              { label: selectedFolder?.title ?? 'Folder', href: ROUTES.getCodeSnippets(folderId!) },
-            ]);
+        { label: 'Folders', href: ROUTES.FOLDERS },
+        { label: selectedFolder?.title ?? 'Folder', href: ROUTES.getCodeSnippets(folderId!) },
+      ]);
     } catch (err) {
       console.error('Error fetching code snippets:', err);
     } finally {
@@ -32,13 +32,13 @@ const CodeSnippetsPageContainer: React.FC = () => {
   };
 
   const handleCreateCodeSnippet = async (codeSnippet: CreateCodeSnippetDto) => {
-      try {
-        await api.postCodeSnippet(codeSnippet);
-        await handleGetCodeSnippets();
-      } catch (err) {
-        console.error('Error creating code snippet:', err);
-      }
-    };
+    try {
+      await api.postCodeSnippet(codeSnippet);
+      await handleGetCodeSnippets();
+    } catch (err) {
+      console.error('Error creating code snippet:', err);
+    }
+  };
 
   const handleGetFolder = async () => {
     if (!folderId) return;

@@ -49,7 +49,7 @@ export const api = {
     }
   },
 
-   async postCodeSnippet(codeSnippet: CreateCodeSnippetDto) {
+  async postCodeSnippet(codeSnippet: CreateCodeSnippetDto) {
     try {
       const response = await apiClient.post<CreateCodeSnippetDto>(`api/CodeSnippet`, codeSnippet);
       return response.data;

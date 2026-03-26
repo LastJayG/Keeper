@@ -46,15 +46,15 @@ export const theme = createTheme({
         text: '#5c3d1e',
       },
       container: {
-          backgroundLight: '#c8c0b0',
-          backgroundDark:  '#b8b0a0',
+        backgroundLight: '#c8c0b0',
+        backgroundDark: '#b8b0a0',
       },
       caption: {
-          small: 'rgba(100, 80, 60, 0.5)',
-          medium: '#2c1f0e',
-          basic: '#2c1f0e',
-        }
-    }
+        small: 'rgba(100, 80, 60, 0.5)',
+        medium: '#2c1f0e',
+        basic: '#2c1f0e',
+      },
+    },
   },
 
   typography: {
@@ -66,56 +66,56 @@ declare module '@mui/material/styles' {
   interface ThemeOptions {
     customComponents: {
       folder: {
-        background: string,
-      },
+        background: string;
+      };
       paper: {
-        background: string,
-        strokes: string,
-        leftBorder: string,
-        shadow: string,
+        background: string;
+        strokes: string;
+        leftBorder: string;
+        shadow: string;
         chip: {
-          background: string,
-          border: string,
-          text: string,
-        },
+          background: string;
+          border: string;
+          text: string;
+        };
         container: {
-          backgroundLight: string,
-          backgroundDark: string,
-        },
+          backgroundLight: string;
+          backgroundDark: string;
+        };
         caption: {
-          small: string,
-          medium: string,
-          basic: string,
-        }
-      },
+          small: string;
+          medium: string;
+          basic: string;
+        };
+      };
     };
   }
 
   interface Theme {
     customComponents: {
       folder: {
-        background: string,
-      },
+        background: string;
+      };
       paper: {
-        background: string,
-        strokes: string,
-        leftBorder: string,
-        shadow: string,
+        background: string;
+        strokes: string;
+        leftBorder: string;
+        shadow: string;
         chip: {
-          background: string,
-          border: string,
-          text: string,
-        },
+          background: string;
+          border: string;
+          text: string;
+        };
         container: {
-          backgroundLight: string,
-          backgroundDark: string,
-        },
+          backgroundLight: string;
+          backgroundDark: string;
+        };
         caption: {
-          small: string,
-          medium: string,
-          basic: string,
-        }
-      },
+          small: string;
+          medium: string;
+          basic: string;
+        };
+      };
     };
   }
 }

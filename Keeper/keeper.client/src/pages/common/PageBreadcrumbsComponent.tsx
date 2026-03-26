@@ -3,8 +3,8 @@ import { Link as RouterLink } from 'react-router-dom';
 import { useBreadcrumbStore } from '../../stores/useBreadcrumbStore';
 
 export default function PageBreadcrumbs() {
-  const crumbs = useBreadcrumbStore((state) => state.crumbs)
-  
+  const crumbs = useBreadcrumbStore((state) => state.crumbs);
+
   return (
     <Breadcrumbs
       aria-label="breadcrumb"

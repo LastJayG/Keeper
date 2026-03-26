@@ -3,7 +3,7 @@ import { CodeSnippetDto } from '../../models/codeSnippet';
 import PageBreadcrumbs from '../common/PageBreadcrumbsComponent';
 import { paperDetailSx } from '../../styles/paper/paperDetailSx';
 import { baseBoxSx } from '../../styles/box/baseBoxSx';
-import PaperDetailsComponent from './common/PaperDetailsComponent';
+import PaperDetailsComponent from './components/PaperDetailsComponent';
 
 interface CodeSnippetDetailsPagePresenterProps {
   codeSnippet?: CodeSnippetDto;
@@ -11,13 +11,13 @@ interface CodeSnippetDetailsPagePresenterProps {
 }
 
 const CodeSnippetDetailsPagePresenter: React.FC<CodeSnippetDetailsPagePresenterProps> = ({
-  codeSnippet
+  codeSnippet,
 }) => {
   if (!codeSnippet) return;
   return (
     <>
       <Box sx={baseBoxSx}>
-        <PageBreadcrumbs/>
+        <PageBreadcrumbs />
         <Box sx={{ maxWidth: '1400px', width: '100%', mx: 'auto' }}>
           <Box sx={paperDetailSx}>
             <PaperDetailsComponent

@@ -1,11 +1,11 @@
-import { Theme } from "@emotion/react";
-import { SxProps } from "@mui/material";
-import { theme } from "../../theme";
+import { Theme } from '@emotion/react';
+import { SxProps } from '@mui/material';
+import { theme } from '../../theme';
 
 export const paperSx: SxProps<Theme> = {
   position: 'relative',
   width: '100%',
-  height: '150px', 
+  height: '150px',
   zIndex: 1,
   backgroundColor: theme.customComponents.paper.background,
   borderRadius: '2px',

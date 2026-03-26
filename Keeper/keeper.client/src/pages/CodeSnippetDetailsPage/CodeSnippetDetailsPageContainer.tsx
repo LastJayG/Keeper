@@ -12,8 +12,8 @@ const CodeSnippetDetailsPageContainer: React.FC = () => {
   const [codeSnippet, setCodeSnippet] = useState<CodeSnippetDto>();
   const [isLoading, setIsLoading] = useState(true);
   const setCrumbs = useBreadcrumbStore((state) => state.setCrumbs);
-  const selectedFolder = useBreadcrumbStore((state) => state.selectedFolder)
-  
+  const selectedFolder = useBreadcrumbStore((state) => state.selectedFolder);
+
   const handleGetCodeSnippet = async () => {
     if (!codeSnippetId) return;
     try {
@@ -31,7 +31,7 @@ const CodeSnippetDetailsPageContainer: React.FC = () => {
     }
   };
 
-   useEffect(() => {
+  useEffect(() => {
     handleGetCodeSnippet();
 
     return () => setCrumbs([]);

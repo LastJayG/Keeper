@@ -21,22 +21,22 @@ const CodeSnippetsPagePresenter: React.FC<CodeSnippetsPagePresenterProps> = ({
   codeSnippets,
   folderTitle,
   folderId,
-  handleCreateCodeSnippet
+  handleCreateCodeSnippet,
 }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const navigate = useNavigate();
 
   return (
     <Box sx={baseBoxSx}>
-      <PageBreadcrumbs/>
+      <PageBreadcrumbs />
       {codeSnippets.length == 0 ? (
         <>
           <Typography variant="h6" sx={{ ...typographyPaperMediumCaption, pb: 2 }}>
             There are no code snippets yet...
           </Typography>
           <Grid container spacing={6} padding={4} justifyContent="center">
-            <AddCodeSnippetPaperComponent onClick={() => setDialogOpen(true)}/>
-            <AddCodeSnippetForm 
+            <AddCodeSnippetPaperComponent onClick={() => setDialogOpen(true)} />
+            <AddCodeSnippetForm
               folderId={folderId}
               open={dialogOpen}
               onClose={() => setDialogOpen(false)}
@@ -46,7 +46,7 @@ const CodeSnippetsPagePresenter: React.FC<CodeSnippetsPagePresenterProps> = ({
         </>
       ) : (
         <Box sx={{ maxWidth: '1600px', width: '100%' }}>
-          <Grid container spacing={6} padding={4} justifyContent="center"  >
+          <Grid container spacing={6} padding={4} justifyContent="center">
             <Grid size={{ xs: 12, xl: 6 }}>
               <AddCodeSnippetPaperComponent onClick={() => setDialogOpen(true)} />
             </Grid>
@@ -58,7 +58,6 @@ const CodeSnippetsPagePresenter: React.FC<CodeSnippetsPagePresenterProps> = ({
                   createdAt={codeSnippet.createdAt}
                   language={codeSnippet.programmingLanguage}
                   onClick={() =>
-                    
                     navigate(ROUTES.getCodeSnippet(folderId, codeSnippet.id), {
                       state: { folderTitle, folderId },
                     })
@@ -67,12 +66,12 @@ const CodeSnippetsPagePresenter: React.FC<CodeSnippetsPagePresenterProps> = ({
               </Grid>
             ))}
           </Grid>
-            <AddCodeSnippetForm 
-              folderId={folderId}
-              open={dialogOpen}
-              onClose={() => setDialogOpen(false)}
-              onSubmit={handleCreateCodeSnippet}
-            />
+          <AddCodeSnippetForm
+            folderId={folderId}
+            open={dialogOpen}
+            onClose={() => setDialogOpen(false)}
+            onSubmit={handleCreateCodeSnippet}
+          />
         </Box>
       )}
     </Box>

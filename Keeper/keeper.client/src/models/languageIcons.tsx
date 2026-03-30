@@ -37,11 +37,7 @@ import {
 } from 'react-icons/si';
 import React from 'react';
 
-export const defaultLanguageIcon = (
-  <Box
-    sx={{ width: 18, height: 18, borderRadius: '50%' }}
-  />
-);
+export const defaultLanguageIcon = <Box sx={{ width: 18, height: 18, borderRadius: '50%' }} />;
 
 export const languageIcons: Record<string, React.ReactNode> = {
   JavaScript: <DiJavascript1 size={18} />,

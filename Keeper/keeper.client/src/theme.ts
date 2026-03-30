@@ -55,6 +55,10 @@ export const theme = createTheme({
         basic: '#2c1f0e',
       },
     },
+    icon: {
+      delete: '#A30000',
+      edit: '#222e50',
+    },
   },
 
   typography: {
@@ -88,6 +92,10 @@ declare module '@mui/material/styles' {
           basic: string;
         };
       };
+      icon: {
+        delete: string;
+        edit: string;
+      };
     };
   }
 
@@ -115,6 +123,10 @@ declare module '@mui/material/styles' {
           medium: string;
           basic: string;
         };
+      };
+      icon: {
+        delete: string;
+        edit: string;
       };
     };
   }

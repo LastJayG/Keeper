@@ -1,10 +1,15 @@
-import { Box, CardContent, Stack, Typography } from '@mui/material';
+import { Box, CardContent, IconButton, Stack, Typography } from '@mui/material';
 import { PieChart } from '@mui/x-charts/PieChart';
 import { chartColors } from '../../../theme';
 import { folderTopSx } from '../../../styles/folder/folderTopSx';
 import { folderBodySx } from '../../../styles/folder/folderBodySx';
 import { pieChartSx } from '../../../styles/pieChartSx';
+import EditIcon from '@mui/icons-material/Edit';
 import { typographyFolderSmallCaption } from '../../../styles/typography/typographyCaptions';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { deleteIconSx } from '../../../styles/icon/deleteIconSx';
+import { editIconSx } from '../../../styles/icon/editIconSx';
+import EditFolderForm from './EditFolderForm';
 
 interface FolderProps {
   number: number;
@@ -12,6 +17,7 @@ interface FolderProps {
   createdAt: string;
   languages: Record<string, number>;
   onClick?: () => void;
+  onEdit: () => void;
 }
 
 const FolderComponent: React.FC<FolderProps> = ({
@@ -20,6 +26,7 @@ const FolderComponent: React.FC<FolderProps> = ({
   createdAt,
   languages,
   onClick,
+  onEdit,
 }) => {
   const pieData = Object.entries(languages).map(([lang, percent], index) => ({
     id: index,
@@ -36,6 +43,18 @@ const FolderComponent: React.FC<FolderProps> = ({
             <CardContent>
               <Typography variant="h5" sx={typographyFolderSmallCaption}>
                 {number}
+                <IconButton
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onEdit();
+                  }}
+                  sx={editIconSx}
+                >
+                  <EditIcon />
+                </IconButton>
+                <IconButton sx={deleteIconSx}>
+                  <DeleteForeverIcon />
+                </IconButton>
               </Typography>
               <Typography variant="h4">{title}</Typography>
               <Typography variant="h5" sx={typographyFolderSmallCaption}>

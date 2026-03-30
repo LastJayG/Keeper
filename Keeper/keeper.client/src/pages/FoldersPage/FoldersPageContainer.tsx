@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { api } from '../../api/api';
-import { CreateFolderDto, FolderDto } from '../../models/folder';
+import { CreateFolderDto, FolderDto, UpdateFolderDto } from '../../models/folder';
 import FoldersPagePresenter from './FoldersPagePresenter';
 import GradientCircularProgress from '../common/GradientCircularProgress';
 import { useBreadcrumbStore } from '../../stores/useBreadcrumbStore';
@@ -29,6 +29,15 @@ const FoldersPageContainer: React.FC = () => {
       console.error('Error creating folder:', err);
     }
   };
+  
+  const handleUpdateFolder = async (id: string, updateDto: UpdateFolderDto) => {
+  try {
+    await api.putFolder(id, updateDto);
+    await handleGetFolders();
+  } catch (err) {
+    console.error('Error updating folder:', err);
+  }
+};
 
   useEffect(() => {
     handleGetFolders();
@@ -40,7 +49,7 @@ const FoldersPageContainer: React.FC = () => {
       {isLoading ? (
         <GradientCircularProgress isVisible={isLoading} />
       ) : (
-        <FoldersPagePresenter folders={folders} handleCreateFolder={handleCreateFolder} />
+        <FoldersPagePresenter folders={folders} handleCreateFolder={handleCreateFolder} handleEditFolder={handleUpdateFolder} />
       )}
     </>
   );

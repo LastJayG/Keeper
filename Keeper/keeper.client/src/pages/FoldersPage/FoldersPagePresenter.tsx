@@ -1,5 +1,5 @@
 import { Box, Grid, Typography } from '@mui/material';
-import { CreateFolderDto, FolderDto } from '../../models/folder';
+import { CreateFolderDto, FolderDto, UpdateFolderDto } from '../../models/folder';
 import FolderComponent from './components/FolderComponent';
 import { useFolderLanguages } from '../../hooks/useFolderLanguages';
 import { useNavigate } from 'react-router-dom';
@@ -11,19 +11,24 @@ import { useState } from 'react';
 import AddFolderForm from './components/AddFolderForm';
 import { typographyPaperMediumCaption } from '../../styles/typography/typographyCaptions';
 import { useBreadcrumbStore } from '../../stores/useBreadcrumbStore';
+import { useFolderStore } from '../../stores/useFolderStore';
+import EditFolderForm from './components/EditFolderForm';
 
 interface FoldersPagePresenterProps {
   folders: FolderDto[];
   handleCreateFolder: (folder: CreateFolderDto) => Promise<void>;
+  handleEditFolder: (folderId: string, folder: UpdateFolderDto) => Promise<void>;
 }
 
 const FoldersPagePresenter: React.FC<FoldersPagePresenterProps> = ({
   folders,
   handleCreateFolder,
+  handleEditFolder,
 }) => {
   const { folderLanguages } = useFolderLanguages(folders);
-  const [dialogOpen, setDialogOpen] = useState(false);
+  const [dialogAddOpen, setDialogAddOpen] = useState(false);
   const setSelectedFolder = useBreadcrumbStore((state) => state.setSelectedFolder);
+  const setEditedFolder = useFolderStore((state) => state.setEditedFolder);
   const navigate = useNavigate();
 
   return (
@@ -35,10 +40,10 @@ const FoldersPagePresenter: React.FC<FoldersPagePresenterProps> = ({
             There are no folders yet...
           </Typography>
           <Grid container spacing={6} padding={4} justifyContent="center">
-            <AddFolderComponent onClick={() => setDialogOpen(true)} />
+            <AddFolderComponent onClick={() => setDialogAddOpen(true)} />
             <AddFolderForm
-              open={dialogOpen}
-              onClose={() => setDialogOpen(false)}
+              open={dialogAddOpen}
+              onClose={() => setDialogAddOpen(false)}
               onSubmit={handleCreateFolder}
             />
           </Grid>
@@ -46,7 +51,7 @@ const FoldersPagePresenter: React.FC<FoldersPagePresenterProps> = ({
       ) : (
         <Box sx={{ maxWidth: '1600px', width: '100%' }}>
           <Grid container spacing={6} padding={4} justifyContent="center">
-            <AddFolderComponent onClick={() => setDialogOpen(true)} />
+            <AddFolderComponent onClick={() => setDialogAddOpen(true)} />
             {folders.map((folder, index) => (
               <Grid size={{ xs: 10, xl: 5 }} key={folder.id} sx={{ justifyItems: 'center' }}>
                 <FolderComponent
@@ -58,13 +63,19 @@ const FoldersPagePresenter: React.FC<FoldersPagePresenterProps> = ({
                     setSelectedFolder(folder);
                     navigate(ROUTES.getCodeSnippets(folder.id));
                   }}
+                  onEdit={()=> {
+                    setEditedFolder(folder);
+                  }} 
                 />
               </Grid>
             ))}
             <AddFolderForm
-              open={dialogOpen}
-              onClose={() => setDialogOpen(false)}
+              open={dialogAddOpen}
+              onClose={() => setDialogAddOpen(false)}
               onSubmit={handleCreateFolder}
+            />
+            <EditFolderForm
+              onSubmit={handleEditFolder}
             />
           </Grid>
         </Box>

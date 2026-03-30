@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CreateFolderDto, FolderDto } from '../models/folder';
+import { CreateFolderDto, FolderDto, UpdateFolderDto } from '../models/folder';
 import { CodeSnippetDto, CodeSnippetShortDto, CreateCodeSnippetDto } from '../models/codeSnippet';
 const API_URL = 'https://localhost:7254';
 
@@ -29,6 +29,33 @@ export const api = {
     }
   },
 
+  async postFolder(folder: CreateFolderDto) {
+    try {
+      const response = await apiClient.post<FolderDto>(`api/Folder`, folder);
+      return response.data;
+    } catch (error: any) {
+      throw error;
+    }
+  },
+
+  async putFolder(folderId: string, folder: UpdateFolderDto) {
+    try {
+      const response = await apiClient.put<FolderDto>(`api/Folder/${folderId}`, folder);
+      return response.data;
+    } catch (error: any) {
+      throw error;
+    }
+  },
+
+  async getFolderLanguages(id: string) {
+    try {
+      const response = await apiClient.get<Record<string, number>>(`api/Folder/${id}/languages`);
+      return response.data;
+    } catch (error: any) {
+      throw error;
+    }
+  },
+
   async getCodeSnippetsByFolderId(folderId: string) {
     try {
       const response = await apiClient.get<CodeSnippetShortDto[]>(
@@ -52,24 +79,6 @@ export const api = {
   async postCodeSnippet(codeSnippet: CreateCodeSnippetDto) {
     try {
       const response = await apiClient.post<CreateCodeSnippetDto>(`api/CodeSnippet`, codeSnippet);
-      return response.data;
-    } catch (error: any) {
-      throw error;
-    }
-  },
-
-  async getFolderLanguages(id: string) {
-    try {
-      const response = await apiClient.get<Record<string, number>>(`api/Folder/${id}/languages`);
-      return response.data;
-    } catch (error: any) {
-      throw error;
-    }
-  },
-
-  async postFolder(folder: CreateFolderDto) {
-    try {
-      const response = await apiClient.post<FolderDto>(`api/Folder`, folder);
       return response.data;
     } catch (error: any) {
       throw error;

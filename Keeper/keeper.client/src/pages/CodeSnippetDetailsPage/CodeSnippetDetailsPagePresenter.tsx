@@ -18,7 +18,7 @@ const CodeSnippetDetailsPagePresenter: React.FC<CodeSnippetDetailsPagePresenterP
     <>
       <Box sx={baseBoxSx}>
         <PageBreadcrumbs />
-        <Box sx={{ maxWidth: '1400px', width: '100%', mx: 'auto' }}>
+        <Box sx={{ maxWidth: '1600px', width: '100%' }}>
           <Box sx={paperDetailSx}>
             <PaperDetailsComponent
               code={codeSnippet.code}

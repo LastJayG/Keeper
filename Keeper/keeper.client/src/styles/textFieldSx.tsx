@@ -10,5 +10,5 @@ export const textFieldSx: SxProps<Theme> = {
   '& .MuiFilledInput-input': {
     fontSize: '18px',
     fontFamily: "'Georgia', serif",
-  }
+  },
 };

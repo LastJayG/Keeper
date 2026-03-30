@@ -8,7 +8,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Autocomplete from '@mui/material/Autocomplete';
 import { dialogContentTextSx } from '../../../styles/dialog/dialogContentTextSx';
-import { addFolderFormSx } from '../../../styles/folder/addFolderFormSx';
+import { folderFormSx } from '../../../styles/folder/folderFormSx';
 import { textFieldSx } from '../../../styles/textFieldSx';
 import { CreateCodeSnippetDto } from '../../../models/codeSnippet';
 import { theme } from '../../../theme';
@@ -19,6 +19,7 @@ import { Box } from '@mui/material';
 import { getLanguageIcon } from '../../../models/languageIcons';
 import { optionBoxSx } from '../../../styles/box/optionBoxSx';
 import { slotPropsSx } from '../../../styles/slotPropsSx';
+import { addCodeSnippetFormSx } from '../../../styles/codeSnippet/addCodeSnippetFormSx';
 
 interface AddCodeSnippetFormProps {
   folderId: string;
@@ -49,7 +50,7 @@ export default function AddCodeSnippetForm({
 
   return (
     <Dialog
-      sx={addFolderFormSx}
+      sx={addCodeSnippetFormSx}
       color={theme.palette.background.paper}
       open={open}
       onClose={onClose}
@@ -57,7 +58,7 @@ export default function AddCodeSnippetForm({
       <DialogTitle variant="h4">+ Add Code Snippet...</DialogTitle>
       <DialogContent>
         <DialogContentText variant="h6" sx={dialogContentTextSx}>
-          Please, enter a title for your code snippet.
+          Please, enter <strong>a title</strong> for your code snippet.
         </DialogContentText>
         <form onSubmit={handleSubmit} id="add-code-snippet-form">
           <TextField
@@ -71,7 +72,7 @@ export default function AddCodeSnippetForm({
             variant="filled"
           />
           <DialogContentText variant="h6" sx={dialogContentTextSx}>
-            Please, enter a description for your code snippet.
+            Please, enter <strong>a description</strong> for your code snippet.
           </DialogContentText>
           <TextField
             sx={textFieldSx}
@@ -85,7 +86,7 @@ export default function AddCodeSnippetForm({
           />
         </form>
         <DialogContentText variant="h6" sx={dialogContentTextSx}>
-          Please, select a programming language for your code snippet.
+          Please, select <strong>a programming language</strong> for your code snippet.
         </DialogContentText>
         <Autocomplete
           sx={autocompleteSx}
@@ -97,24 +98,17 @@ export default function AddCodeSnippetForm({
           onChange={(_, newValue) => setSelectedLanguage(newValue)}
           slotProps={{
             paper: {
-              sx: slotPropsSx
-            }
+              sx: slotPropsSx,
+            },
           }}
           renderOption={(props, option) => (
             <Box component="li" {...props} sx={optionBoxSx}>
-              <Box sx ={{mr: 2}}>
-                {getLanguageIcon(option.value)}
-              </Box>
+              <Box sx={{ mr: 2 }}>{getLanguageIcon(option.value)}</Box>
               {option.label}
             </Box>
           )}
           renderInput={(params) => (
-            <TextField
-              {...params}
-              sx={textFieldSx}
-              margin="dense"
-              variant="filled"
-            />
+            <TextField {...params} sx={textFieldSx} margin="dense" variant="filled" />
           )}
         />
       </DialogContent>

@@ -1,8 +1,6 @@
 import { Box, Stack, Typography } from '@mui/material';
 import { paperContainerSx } from '../../../styles/paper/paperContainerSx';
-import {
-  typographyPaperMediumCaption,
-} from '../../../styles/typography/typographyCaptions';
+import { typographyPaperMediumCaption } from '../../../styles/typography/typographyCaptions';
 import { addCodeSnippetComponentSx } from '../../../styles/codeSnippet/addCodeSnippetComponentSx';
 
 interface CodeSnippetPaperProps {

@@ -7,5 +7,5 @@ export const addCodeSnippetFormSx: SxProps<Theme> = {
   borderColor: theme.palette.background.paper,
   height: '1050px',
   width: '100%',
-  minWidth: '615px',
+  minWidth: '720px'
 };

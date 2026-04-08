@@ -8,3 +8,7 @@ export interface FolderDto {
 export interface CreateFolderDto {
   title: string;
 }
+
+export interface UpdateFolderDto {
+  title: string;
+}

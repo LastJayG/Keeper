@@ -1,11 +1,11 @@
-import { Theme } from "@emotion/react";
-import { SxProps } from "@mui/material";
-import { theme } from "../../theme";
+import { Theme } from '@emotion/react';
+import { SxProps } from '@mui/material';
+import { theme } from '../../theme';
 
 export const addCodeSnippetComponentSx: SxProps<Theme> = {
   position: 'relative',
   width: '100%',
-  height: '150px', 
+  height: '150px',
   alignContent: 'center',
   justifyItems: 'center',
   zIndex: 1,

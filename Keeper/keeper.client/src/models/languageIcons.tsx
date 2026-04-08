@@ -1,0 +1,78 @@
+import { Box } from '@mui/material';
+import {
+  DiJavascript1,
+  DiPython,
+  DiJava,
+  DiRuby,
+  DiPhp,
+  DiCss3,
+  DiHtml5,
+  DiRust,
+  DiGo,
+  DiSwift,
+  DiScala,
+  DiHaskell,
+} from 'react-icons/di';
+import {
+  SiTypescript,
+  SiKotlin,
+  SiCplusplus,
+  SiC,
+  SiSharp,
+  SiLua,
+  SiFsharp,
+  SiElixir,
+  SiErlang,
+  SiClojure,
+  SiOcaml,
+  SiSolidity,
+  SiGnubash,
+  SiPowers,
+  SiJson,
+  SiYaml,
+  SiToml,
+  SiMarkdown,
+  SiZig,
+  SiDart,
+} from 'react-icons/si';
+import React from 'react';
+
+export const defaultLanguageIcon = <Box sx={{ width: 18, height: 18, borderRadius: '50%' }} />;
+
+export const languageIcons: Record<string, React.ReactNode> = {
+  JavaScript: <DiJavascript1 size={18} />,
+  TypeScript: <SiTypescript size={16} />,
+  Python: <DiPython size={18} />,
+  Java: <DiJava size={18} />,
+  CSharp: <SiSharp size={16} />,
+  CPlusPlus: <SiCplusplus size={16} />,
+  C: <SiC size={16} />,
+  Ruby: <DiRuby size={18} />,
+  PHP: <DiPhp size={18} />,
+  CSS: <DiCss3 size={18} />,
+  HTML: <DiHtml5 size={18} />,
+  Rust: <DiRust size={18} />,
+  Go: <DiGo size={18} />,
+  Swift: <DiSwift size={18} />,
+  Kotlin: <SiKotlin size={16} />,
+  Scala: <DiScala size={18} />,
+  Haskell: <DiHaskell size={18} />,
+  FSharp: <SiFsharp size={16} />,
+  Elixir: <SiElixir size={16} />,
+  Erlang: <SiErlang size={16} />,
+  Clojure: <SiClojure size={16} />,
+  OCaml: <SiOcaml size={16} />,
+  Lua: <SiLua size={16} />,
+  Dart: <SiDart size={16} />,
+  Bash: <SiGnubash size={16} />,
+  PowerShell: <SiPowers size={16} />,
+  JSON: <SiJson size={16} />,
+  YAML: <SiYaml size={16} />,
+  TOML: <SiToml size={16} />,
+  Markdown: <SiMarkdown size={16} />,
+  Solidity: <SiSolidity size={16} />,
+  Zig: <SiZig size={16} />,
+};
+
+export const getLanguageIcon = (language: string): React.ReactNode =>
+  languageIcons[language] ?? defaultLanguageIcon;

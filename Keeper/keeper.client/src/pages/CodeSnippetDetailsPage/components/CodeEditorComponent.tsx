@@ -9,7 +9,7 @@ const CodeEditorComponent: React.FC<CodeEditorComponentProps> = ({ programmingLa
   return (
     <>
       <Editor
-        height="50vh"
+        height="40vh"
         defaultLanguage={programmingLanguage.toLowerCase()}
         defaultValue="//your code here"
         value={code}

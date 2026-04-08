@@ -1,9 +1,11 @@
 import { create } from 'zustand';
 import { FolderDto } from '../models/folder';
 import { CodeSnippetDto } from '../models/codeSnippet';
+import { SvgIconComponent } from '@mui/icons-material';
 
 interface Crumb {
-  label: string;
+  label?: string;
+  icon?: SvgIconComponent;
   href?: string;
 }
 

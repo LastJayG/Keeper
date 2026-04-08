@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { api } from '../../api/api';
 import { CreateFolderDto, FolderDto, UpdateFolderDto } from '../../models/folder';
 import FoldersPagePresenter from './FoldersPagePresenter';
+import FolderIcon from '@mui/icons-material/Folder';
 import GradientCircularProgress from '../common/GradientCircularProgress';
 import { useBreadcrumbStore } from '../../stores/useBreadcrumbStore';
 
@@ -41,7 +42,7 @@ const FoldersPageContainer: React.FC = () => {
 
   useEffect(() => {
     handleGetFolders();
-    setCrumbs([{ label: 'Folders' }]);
+    setCrumbs([{ label: 'Folders', icon: FolderIcon }]);
   }, []);
 
   return (

@@ -9,7 +9,6 @@ import { typographyFolderSmallCaption } from '../../../styles/typography/typogra
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { deleteIconSx } from '../../../styles/icon/deleteIconSx';
 import { editIconSx } from '../../../styles/icon/editIconSx';
-import EditFolderForm from './EditFolderForm';
 
 interface FolderProps {
   number: number;
@@ -28,21 +27,45 @@ const FolderComponent: React.FC<FolderProps> = ({
   onClick,
   onEdit,
 }) => {
-  const pieData = Object.entries(languages).map(([lang, percent], index) => ({
-    id: index,
-    value: percent,
-    label: lang,
-    color: chartColors[index % chartColors.length],
-  }));
+  const sortedLanguages = Object.entries(languages).sort(([, a], [, b]) => b - a);
+  
+  let pieData;
+  if (sortedLanguages.length > 5) {
+    const top5 = sortedLanguages.slice(0, 5);
+    const remaining = sortedLanguages.slice(5);
+    const othersValue = remaining.reduce((sum, [, percent]) => sum + percent, 0);
+    const othersCount = remaining.length;
+    
+    pieData = [
+      ...top5.map(([lang, percent], index) => ({
+        id: index,
+        value: percent,
+        label: lang,
+        color: chartColors[index % chartColors.length],
+      })),
+      {
+        id: 5,
+        value: othersValue,
+        label: `+${othersCount} more`,
+        color: chartColors[5 % chartColors.length],
+      },
+    ];
+  } else {
+    pieData = sortedLanguages.map(([lang, percent], index) => ({
+      id: index,
+      value: percent,
+      label: lang,
+      color: chartColors[index % chartColors.length],
+    }));
+  }
 
   return (
     <Box onClick={onClick} sx={folderTopSx}>
       <Box sx={folderBodySx}>
-        <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ pr: 3 }}>
+        <Stack direction="row" alignItems="center" justifyContent="space-between">
           <Stack direction="column">
             <CardContent>
               <Typography variant="h5" sx={typographyFolderSmallCaption}>
-                {number}
                 <IconButton
                   onClick={(e) => {
                     e.stopPropagation();

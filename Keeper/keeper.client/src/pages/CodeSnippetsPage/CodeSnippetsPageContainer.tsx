@@ -3,6 +3,8 @@ import { api } from '../../api/api';
 import CodeSnippetsPagePresenter from './CodeSnippetsPagePresenter';
 import { CodeSnippetShortDto, CreateCodeSnippetDto } from '../../models/codeSnippet';
 import { useParams } from 'react-router-dom';
+import NoteIcon from '@mui/icons-material/Note';
+import FolderIcon from '@mui/icons-material/Folder';
 import GradientCircularProgress from '../common/GradientCircularProgress';
 import { useBreadcrumbStore } from '../../stores/useBreadcrumbStore';
 import { ROUTES } from '../../routes';
@@ -21,8 +23,8 @@ const CodeSnippetsPageContainer: React.FC = () => {
       const data = await api.getCodeSnippetsByFolderId(folderId);
       setCodeSnippets(data);
       setCrumbs([
-        { label: 'Folders', href: ROUTES.FOLDERS },
-        { label: selectedFolder?.title ?? 'Folder', href: ROUTES.getCodeSnippets(folderId!) },
+        { label: 'Folders', icon: FolderIcon, href: ROUTES.FOLDERS },
+        { label: selectedFolder?.title ?? 'Folder', icon: NoteIcon, href: ROUTES.getCodeSnippets(folderId!) },
       ]);
     } catch (err) {
       console.error('Error fetching code snippets:', err);

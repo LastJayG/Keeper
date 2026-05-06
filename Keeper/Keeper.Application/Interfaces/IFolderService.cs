@@ -7,11 +7,11 @@ namespace Keeper.Application.Interfaces;
 
 public interface IFolderService
 {
-    Task<FolderDto?> GetByIdAsync(Guid id);
-    Task<IReadOnlyList<FolderDto>> GetAllAsync();
-    Task<IReadOnlyList<FolderDto>> GetAsync(BaseSpecification<FolderEntity> spec);
-    Task<FolderDto> CreateAsync(CreateFolderDto createDto);
-    Task<FolderDto?> UpdateAsync(Guid id, UpdateFolderDto updateDto);
-    Task<bool> DeleteAsync(Guid id);
-    Task<IReadOnlyDictionary<ProgrammingLanguage, decimal>> GetFolderLanguages(Guid id);
+    Task<FolderDto?> GetByIdAsync(Guid id, CancellationToken ct);
+    Task<IReadOnlyList<FolderDto>> GetAllAsync(CancellationToken ct);
+    Task<IReadOnlyList<FolderDto>> GetAsync(BaseSpecification<FolderEntity> spec, CancellationToken ct);
+    Task<FolderDto> CreateAsync(CreateFolderDto createDto, CancellationToken ct);
+    Task<FolderDto?> UpdateAsync(Guid id, UpdateFolderDto updateDto, CancellationToken ct);
+    Task<bool> DeleteAsync(Guid id, CancellationToken ct);
+    Task<IReadOnlyDictionary<ProgrammingLanguage, decimal>> GetFolderLanguages(Guid id, CancellationToken ct);
 }

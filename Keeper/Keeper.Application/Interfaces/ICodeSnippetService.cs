@@ -12,6 +12,5 @@ public interface ICodeSnippetService
     Task<CodeSnippetDto> CreateAsync(CreateCodeSnippetDto createDto);
     Task<CodeSnippetDto?> UpdateAsync(Guid id, UpdateCodeSnippetDto updateDto);
     Task<bool> DeleteAsync(Guid id);
-    Task<bool> ExistsAsync(Guid id);
     Task<IReadOnlyList<CodeSnippetShortDto>> GetAllShortByFolderIdAsync(Guid folderId);
 }

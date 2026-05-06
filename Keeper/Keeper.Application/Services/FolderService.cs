@@ -68,10 +68,4 @@ public class FolderService(
 
         return true;
     }
-
-    public async Task<bool> ExistsAsync(Guid id)
-    {
-        var entity = await folderRepository.GetByIdAsync(id);
-        return entity != null;
-    }
 }

@@ -67,10 +67,4 @@ public class CodeSnippetService(
 
         return true;
     }
-
-    public async Task<bool> ExistsAsync(Guid id)
-    {
-        var entity = await codeSnippetRepository.GetByIdAsync(id);
-        return entity != null;
-    }
 }

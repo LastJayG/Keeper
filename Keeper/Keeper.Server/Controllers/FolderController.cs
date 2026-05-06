@@ -58,13 +58,4 @@ public class FolderController(IFolderService folderService) : ControllerBase
         await folderService.DeleteAsync(id);
         return NoContent();
     }
-
-    [HttpHead("{id:guid}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Exists(Guid id)
-    {
-        var exists = await folderService.ExistsAsync(id);
-        return exists ? Ok() : NotFound();
-    }
 }

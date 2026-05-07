@@ -2,7 +2,7 @@
 
 namespace Keeper.Application.Models.CodeSnippet;
 
-public record CodeSnippetDto(
+public sealed record CodeSnippetDto(
     Guid Id,
     string Title,
     string Description,

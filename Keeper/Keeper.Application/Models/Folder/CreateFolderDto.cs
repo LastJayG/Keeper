@@ -1,3 +1,3 @@
 ﻿namespace Keeper.Application.Models.Folder;
 
-public record CreateFolderDto(string Title);
+public sealed record CreateFolderDto(string Title);

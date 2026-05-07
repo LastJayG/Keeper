@@ -2,7 +2,7 @@
 
 namespace Keeper.Application.Models.CodeSnippet;
 
-public record UpdateCodeSnippetDto(
+public sealed record UpdateCodeSnippetDto(
     string Title,
     string Description,
     string Code,

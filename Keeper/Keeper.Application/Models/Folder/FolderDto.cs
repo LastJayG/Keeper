@@ -1,6 +1,6 @@
 ﻿namespace Keeper.Application.Models.Folder;
 
-public record FolderDto(
+public sealed record FolderDto(
     Guid Id,
     string Title,
     DateTime CreatedAt,

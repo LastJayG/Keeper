@@ -10,35 +10,35 @@ public class CodeSnippetController(ICodeSnippetService codeSnippetService) : Con
 {
     [HttpGet]
     [ProducesResponseType(typeof(IReadOnlyList<CodeSnippetDto>), StatusCodes.Status200OK)]
-    public async Task<ActionResult<IReadOnlyList<CodeSnippetDto>>> GetAll()
+    public async Task<ActionResult<IReadOnlyList<CodeSnippetDto>>> GetAll(CancellationToken ct)
     {
-        var snippets = await codeSnippetService.GetAllAsync();
+        var snippets = await codeSnippetService.GetAllAsync(ct);
         return Ok(snippets);
     }
 
     [HttpGet("{folderId:guid}/short")]
     [ProducesResponseType(typeof(IReadOnlyList<CodeSnippetDto>), StatusCodes.Status200OK)]
-    public async Task<ActionResult<IReadOnlyList<CodeSnippetDto>>> GetAllShortByFolderId(Guid folderId)
+    public async Task<ActionResult<IReadOnlyList<CodeSnippetDto>>> GetAllShortByFolderId(Guid folderId, CancellationToken ct)
     {
-        var snippets = await codeSnippetService.GetAllShortByFolderIdAsync(folderId);
+        var snippets = await codeSnippetService.GetAllShortByFolderIdAsync(folderId, ct);
         return Ok(snippets);
     }
 
     [HttpGet("{id:guid}")]
     [ProducesResponseType(typeof(CodeSnippetDto), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<CodeSnippetDto>> GetById(Guid id)
+    public async Task<ActionResult<CodeSnippetDto>> GetById(Guid id, CancellationToken ct)
     {
-        var snippet = await codeSnippetService.GetByIdAsync(id);
+        var snippet = await codeSnippetService.GetByIdAsync(id, ct);
         return Ok(snippet);
     }
 
     [HttpPost]
     [ProducesResponseType(typeof(CodeSnippetDto), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<CodeSnippetDto>> Create([FromBody] CreateCodeSnippetDto createDto)
+    public async Task<ActionResult<CodeSnippetDto>> Create([FromBody] CreateCodeSnippetDto createDto, CancellationToken ct)
     {
-        var snippet = await codeSnippetService.CreateAsync(createDto);
+        var snippet = await codeSnippetService.CreateAsync(createDto, ct);
         return Ok(snippet);
     }
 
@@ -46,27 +46,18 @@ public class CodeSnippetController(ICodeSnippetService codeSnippetService) : Con
     [ProducesResponseType(typeof(CodeSnippetDto), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<CodeSnippetDto>> Update(Guid id, [FromBody] UpdateCodeSnippetDto updateDto)
+    public async Task<ActionResult<CodeSnippetDto>> Update(Guid id, [FromBody] UpdateCodeSnippetDto updateDto, CancellationToken ct)
     {
-        var snippet = await codeSnippetService.UpdateAsync(id, updateDto);
+        var snippet = await codeSnippetService.UpdateAsync(id, updateDto, ct);
         return Ok(snippet);
     }
 
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Delete(Guid id)
+    public async Task<IActionResult> Delete(Guid id, CancellationToken ct)
     {
-        await codeSnippetService.DeleteAsync(id);
+        await codeSnippetService.DeleteAsync(id, ct);
         return NoContent();
-    }
-
-    [HttpHead("{id:guid}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Exists(Guid id)
-    {
-        var exists = await codeSnippetService.ExistsAsync(id);
-        return exists ? Ok() : NotFound();
     }
 }
